@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Facturacion" table="facturacion" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.FacturacionId">
+            <key-property name="facCod" type="int">
+                <column name="fac_cod" />
+            </key-property>
+            <key-property name="apciCod" type="int">
+                <column name="apci_cod" />
+            </key-property>
+            <key-property name="usuCod" type="int">
+                <column name="usu_cod" />
+            </key-property>
+            <key-property name="sucCod" type="int">
+                <column name="suc_cod" />
+            </key-property>
+            <key-property name="cajCod" type="int">
+                <column name="caj_cod" />
+            </key-property>
+        </composite-id>
+        <property name="facCarg" type="timestamp">
+            <column name="fac_carg" length="19" />
+        </property>
+        <property name="facNro" type="string">
+            <column name="fac_nro" length="15" />
+        </property>
+        <property name="facEst" type="java.lang.Character">
+            <column name="fac_est" length="1">
+                <comment>estado A=activo I=Inactivo</comment>
+            </column>
+        </property>
+        <property name="facTipoPago" type="string">
+            <column name="fac_tipo_pago" length="15">
+                <comment>'contado o credito'</comment>
+            </column>
+        </property>
+        <property name="insCod" type="int">
+            <column name="ins_cod" not-null="true" />
+        </property>
+        <property name="perCod" type="int">
+            <column name="per_cod" not-null="true" />
+        </property>
+        <property name="timCod" type="int">
+            <column name="tim_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

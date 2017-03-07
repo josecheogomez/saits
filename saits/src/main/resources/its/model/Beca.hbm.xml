@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Beca" table="beca" catalog="SAITSDB" optimistic-lock="version">
+        <id name="becCod" type="java.lang.Integer">
+            <column name="bec_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="fechaCarga" type="timestamp">
+            <column name="fecha_carga" length="19" />
+        </property>
+        <property name="becEstado" type="java.lang.Character">
+            <column name="bec_estado" length="1" />
+        </property>
+        <property name="perCod" type="int">
+            <column name="per_cod" not-null="true" />
+        </property>
+        <property name="benCod" type="int">
+            <column name="ben_cod" not-null="true" />
+        </property>
+        <property name="becAprobado" type="java.lang.Boolean">
+            <column name="bec_aprobado" />
+        </property>
+    </class>
+</hibernate-mapping>

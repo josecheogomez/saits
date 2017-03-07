@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Cuotas" table="cuotas" catalog="SAITSDB" optimistic-lock="version">
+        <id name="cuoCod" type="java.lang.Integer">
+            <column name="cuo_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="cuoCosto" type="java.lang.Double">
+            <column name="cuo_costo" precision="8" />
+        </property>
+        <property name="estado" type="java.lang.Character">
+            <column name="estado" length="1" />
+        </property>
+        <property name="cuoFechaVenci" type="date">
+            <column name="cuo_fecha_venci" length="10" />
+        </property>
+        <property name="fechaActualizacion" type="date">
+            <column name="fecha_actualizacion" length="10" />
+        </property>
+        <property name="insCod" type="int">
+            <column name="ins_cod" not-null="true" />
+        </property>
+        <property name="perCod" type="int">
+            <column name="per_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.AperCie" table="aper_cie" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.AperCieId">
+            <key-property name="apciCod" type="int">
+                <column name="apci_cod" />
+            </key-property>
+            <key-property name="usuCod" type="int">
+                <column name="usu_cod" />
+            </key-property>
+            <key-property name="sucCod" type="int">
+                <column name="suc_cod" />
+            </key-property>
+            <key-property name="cajCod" type="int">
+                <column name="caj_cod" />
+            </key-property>
+        </composite-id>
+        <property name="apciFecape" type="date">
+            <column name="apci_fecape" length="10" />
+        </property>
+        <property name="apcHsape" type="time">
+            <column name="apc_hsape" length="8" />
+        </property>
+        <property name="apciFeccie" type="date">
+            <column name="apci_feccie" length="10" />
+        </property>
+        <property name="apciHscie" type="time">
+            <column name="apci_hscie" length="8" />
+        </property>
+        <property name="apciMonIni" type="java.lang.Double">
+            <column name="apci_mon_ini" precision="8">
+                <comment>monto inicial</comment>
+            </column>
+        </property>
+        <property name="apciMonEfe" type="java.lang.Double">
+            <column name="apci_mon_efe" precision="8" />
+        </property>
+        <property name="apciMonTar" type="java.lang.Double">
+            <column name="apci_mon_tar" precision="8" />
+        </property>
+        <property name="apciMonChe" type="java.lang.Double">
+            <column name="apci_mon_che" precision="8" />
+        </property>
+        <property name="apciMonCie" type="java.lang.Double">
+            <column name="apci_mon_cie" precision="8">
+                <comment>monto total de cierre</comment>
+            </column>
+        </property>
+        <property name="apciEst" type="java.lang.Character">
+            <column name="apci_est" length="1">
+                <comment>A=activo I=Inactivo</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

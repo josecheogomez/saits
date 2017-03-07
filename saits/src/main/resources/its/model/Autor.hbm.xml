@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Autor" table="autor" catalog="SAITSDB" optimistic-lock="version">
+        <id name="autCod" type="java.lang.Integer">
+            <column name="aut_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="autNom" type="string">
+            <column name="aut_nom" length="45" />
+        </property>
+        <property name="autApe" type="string">
+            <column name="aut_ape" length="45" />
+        </property>
+        <property name="autWeb" type="string">
+            <column name="aut_web" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

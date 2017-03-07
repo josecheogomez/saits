@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.FacturacionDetalle" table="facturacion_detalle" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.FacturacionDetalleId">
+            <key-property name="facCod" type="int">
+                <column name="fac_cod" />
+            </key-property>
+            <key-property name="cuoCod" type="int">
+                <column name="cuo_cod" />
+            </key-property>
+        </composite-id>
+        <property name="facCosto" type="java.lang.Double">
+            <column name="fac_costo" precision="8" />
+        </property>
+    </class>
+</hibernate-mapping>

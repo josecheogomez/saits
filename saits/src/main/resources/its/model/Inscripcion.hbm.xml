@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Inscripcion" table="inscripcion" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.InscripcionId">
+            <key-property name="insCod" type="int">
+                <column name="ins_cod" />
+            </key-property>
+            <key-property name="perCod" type="int">
+                <column name="per_cod" />
+            </key-property>
+        </composite-id>
+        <property name="esLider" type="java.lang.Boolean">
+            <column name="es_lider" />
+        </property>
+        <property name="insEdl" type="java.lang.Boolean">
+            <column name="ins_edl" />
+        </property>
+        <property name="insEv" type="java.lang.Boolean">
+            <column name="ins_ev" />
+        </property>
+        <property name="insOtro" type="string">
+            <column name="ins_otro" length="45" />
+        </property>
+        <property name="comentario" type="string">
+            <column name="comentario" length="100" />
+        </property>
+        <property name="insCarg" type="timestamp">
+            <column name="ins_carg" length="19" />
+        </property>
+        <property name="insEstado" type="java.lang.Character">
+            <column name="ins_estado" length="1">
+                <comment>A=activo I=inactivo</comment>
+            </column>
+        </property>
+        <property name="usuCod" type="int">
+            <column name="usu_cod" not-null="true" />
+        </property>
+        <property name="sucCod" type="int">
+            <column name="suc_cod" not-null="true" />
+        </property>
+        <property name="plaCod" type="int">
+            <column name="pla_cod" not-null="true" />
+        </property>
+        <property name="malCod" type="int">
+            <column name="mal_cod" not-null="true" />
+        </property>
+        <property name="carCod" type="int">
+            <column name="car_cod" not-null="true" />
+        </property>
+        <property name="curCod" type="int">
+            <column name="cur_cod" not-null="true" />
+        </property>
+        <property name="insFirm" type="java.lang.Boolean">
+            <column name="ins_firm">
+                <comment>firmo la inscripcion</comment>
+            </column>
+        </property>
+        <property name="insAcl" type="java.lang.Boolean">
+            <column name="ins_acl">
+                <comment>aclaracion</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

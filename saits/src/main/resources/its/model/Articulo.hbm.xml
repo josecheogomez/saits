@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Articulo" table="articulo" catalog="SAITSDB" optimistic-lock="version">
+        <id name="artCod" type="java.lang.Integer">
+            <column name="art_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="artDesc" type="string">
+            <column name="art_desc" length="45" />
+        </property>
+        <property name="tpartCod" type="int">
+            <column name="tpart_cod" not-null="true" />
+        </property>
+        <property name="artCodbar" type="string">
+            <column name="art_codbar" length="45">
+                <comment>codigo de barras</comment>
+            </column>
+        </property>
+        <property name="autCod" type="int">
+            <column name="aut_cod" not-null="true" />
+        </property>
+        <property name="ediCod" type="int">
+            <column name="edi_cod" not-null="true" />
+        </property>
+        <property name="clasCod" type="int">
+            <column name="clas_cod" not-null="true" />
+        </property>
+        <property name="temCod" type="int">
+            <column name="tem_cod" not-null="true" />
+        </property>
+        <property name="artCdd" type="string">
+            <column name="art_cdd" length="8">
+                <comment>aqui debe hacer una combinacion de clasificacion tematica, y agregar el resto de la codificacion</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Cobro" table="cobro" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.CobroId">
+            <key-property name="cobCod" type="int">
+                <column name="cob_cod" />
+            </key-property>
+            <key-property name="apciCod" type="int">
+                <column name="apci_cod" />
+            </key-property>
+        </composite-id>
+        <property name="fpgCod" type="int">
+            <column name="fpg_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

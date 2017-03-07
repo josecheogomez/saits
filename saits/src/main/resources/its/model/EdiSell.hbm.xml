@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.EdiSell" table="edi_sell" catalog="SAITSDB" optimistic-lock="version">
+        <id name="ediCod" type="java.lang.Integer">
+            <column name="edi_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="ediDesc" type="string">
+            <column name="edi_desc" length="45" />
+        </property>
+        <property name="ediWeb" type="string">
+            <column name="edi_web" length="45" />
+        </property>
+        <property name="ediCon" type="string">
+            <column name="edi_con" length="45">
+                <comment>contacto</comment>
+            </column>
+        </property>
+        <property name="ediTel" type="string">
+            <column name="edi_tel" length="15" />
+        </property>
+    </class>
+</hibernate-mapping>

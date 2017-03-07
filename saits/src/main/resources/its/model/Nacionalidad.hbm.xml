@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Nacionalidad" table="nacionalidad" catalog="SAITSDB" optimistic-lock="version">
+        <id name="nacCod" type="int">
+            <column name="nac_cod" />
+            <generator class="assigned" />
+        </id>
+        <property name="nacDesc" type="string">
+            <column name="nac_desc" length="45" />
+        </property>
+        <property name="nacAbre" type="string">
+            <column name="nac_abre" length="4">
+                <comment>abreviatura</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

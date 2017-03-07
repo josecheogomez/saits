@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Prestamo" table="prestamo" catalog="SAITSDB" optimistic-lock="version">
+        <id name="preCod" type="java.lang.Integer">
+            <column name="pre_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="preFec" type="date">
+            <column name="pre_fec" length="10" />
+        </property>
+        <property name="preCarg" type="timestamp">
+            <column name="pre_carg" length="19" />
+        </property>
+        <property name="preFecIni" type="date">
+            <column name="pre_fec_ini" length="10" />
+        </property>
+        <property name="preFecFin" type="date">
+            <column name="pre_fec_fin" length="10" />
+        </property>
+        <property name="preEstado" type="java.lang.Character">
+            <column name="pre_estado" length="1" />
+        </property>
+        <property name="perCod" type="int">
+            <column name="per_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

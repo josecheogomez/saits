@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Entidad" table="entidad" catalog="SAITSDB" optimistic-lock="version">
+        <id name="entCod" type="int">
+            <column name="ent_cod" />
+            <generator class="assigned" />
+        </id>
+        <property name="entNom" type="string">
+            <column name="ent_nom" length="45" />
+        </property>
+        <property name="entTel" type="string">
+            <column name="ent_tel" length="45" />
+        </property>
+        <property name="entDir" type="string">
+            <column name="ent_dir" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Malla" table="malla" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.MallaId">
+            <key-property name="malCod" type="int">
+                <column name="mal_cod" />
+            </key-property>
+            <key-property name="carCod" type="int">
+                <column name="car_cod" />
+            </key-property>
+        </composite-id>
+        <property name="malCarg" type="timestamp">
+            <column name="mal_carg" length="19" />
+        </property>
+        <property name="malInicio" type="date">
+            <column name="mal_inicio" length="10" />
+        </property>
+        <property name="malFin" type="date">
+            <column name="mal_fin" length="10" />
+        </property>
+        <property name="malEstado" type="java.lang.Character">
+            <column name="mal_estado" length="1" />
+        </property>
+        <property name="usuCod" type="int">
+            <column name="usu_cod" not-null="true" />
+        </property>
+        <property name="sucCod" type="int">
+            <column name="suc_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

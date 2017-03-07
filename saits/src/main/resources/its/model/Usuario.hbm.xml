@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Usuario" table="usuario" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.UsuarioId">
+            <key-property name="usuCod" type="int">
+                <column name="usu_cod" />
+            </key-property>
+            <key-property name="sucCod" type="int">
+                <column name="suc_cod" />
+            </key-property>
+        </composite-id>
+        <property name="usuario" type="string">
+            <column name="usuario" length="16" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="32" not-null="true" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="create_time" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

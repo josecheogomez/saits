@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Empresa" table="empresa" catalog="SAITSDB" optimistic-lock="version">
+        <id name="empCod" type="java.lang.Integer">
+            <column name="emp_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="empNom" type="string">
+            <column name="emp_nom" length="45" />
+        </property>
+        <property name="callePrincipal" type="string">
+            <column name="`calle principal`" length="45" />
+        </property>
+        <property name="nro" type="string">
+            <column name="nro" length="6" />
+        </property>
+        <property name="calleSecundaria" type="string">
+            <column name="`calle secundaria`" length="45" />
+        </property>
+        <property name="empTelefono" type="string">
+            <column name="emp_telefono" length="15" />
+        </property>
+        <property name="empCelular" type="string">
+            <column name="emp_celular" length="15" />
+        </property>
+        <property name="empEmail" type="string">
+            <column name="emp_email" length="50" />
+        </property>
+        <property name="empSlogan" type="string">
+            <column name="emp_slogan" length="100" />
+        </property>
+        <property name="fechaHoraCarga" type="timestamp">
+            <column name="fecha_hora_carga" length="19" />
+        </property>
+        <property name="empLogo" type="binary">
+            <column name="emp_logo" />
+        </property>
+    </class>
+</hibernate-mapping>

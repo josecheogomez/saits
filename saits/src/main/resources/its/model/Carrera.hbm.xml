@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Carrera" table="carrera" catalog="SAITSDB" optimistic-lock="version">
+        <id name="carCod" type="java.lang.Integer">
+            <column name="car_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="carDesc" type="string">
+            <column name="car_desc" length="45" />
+        </property>
+        <property name="carCarg" type="timestamp">
+            <column name="car_carg" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

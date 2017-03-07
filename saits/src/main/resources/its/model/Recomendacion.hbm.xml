@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Recomendacion" table="recomendacion" catalog="SAITSDB" optimistic-lock="version">
+        <id name="insCod" type="int">
+            <column name="ins_cod" />
+            <generator class="assigned" />
+        </id>
+        <property name="recCert" type="java.lang.Boolean">
+            <column name="rec_cert">
+                <comment>certifico que asiste a una iglesia</comment>
+            </column>
+        </property>
+        <property name="recCulminoEdl" type="java.lang.Boolean">
+            <column name="rec_culmino_edl" />
+        </property>
+        <property name="recEsLider" type="java.lang.Boolean">
+            <column name="rec_es_lider" />
+        </property>
+        <property name="recBautismo" type="java.lang.Boolean">
+            <column name="rec_bautismo" />
+        </property>
+        <property name="recEs" type="java.lang.Boolean">
+            <column name="rec_es">
+                <comment>bau E.S</comment>
+            </column>
+        </property>
+        <property name="recRecom" type="java.lang.Boolean">
+            <column name="rec_recom">
+                <comment>la organizacion afirma la recomendacion</comment>
+            </column>
+        </property>
+        <property name="recActRea" type="string">
+            <column name="rec_act_rea" length="45">
+                <comment>que actividad realiza</comment>
+            </column>
+        </property>
+        <property name="recObs" type="string">
+            <column name="rec_obs" length="45" />
+        </property>
+        <property name="recEncFirma" type="java.lang.Boolean">
+            <column name="rec_enc_firma">
+                <comment>firma del encargado</comment>
+            </column>
+        </property>
+        <property name="recEncTel" type="string">
+            <column name="rec_enc_tel" length="15">
+                <comment>telefono encargado</comment>
+            </column>
+        </property>
+        <property name="recEncEmail" type="string">
+            <column name="rec_enc_email" length="60" />
+        </property>
+        <property name="recEstado" type="java.lang.Character">
+            <column name="rec_estado" length="1">
+                <comment>A=activo I=Inactivo</comment>
+            </column>
+        </property>
+        <property name="orgCod" type="int">
+            <column name="org_cod" not-null="true" />
+        </property>
+        <property name="volCod" type="int">
+            <column name="vol_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Timbrado" table="timbrado" catalog="SAITSDB" optimistic-lock="version">
+        <id name="timCod" type="java.lang.Integer">
+            <column name="tim_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="timNro" type="string">
+            <column name="tim_nro" length="15" />
+        </property>
+        <property name="timFecIni" type="date">
+            <column name="tim_fec_ini" length="10" />
+        </property>
+        <property name="timFecFin" type="date">
+            <column name="tim_fec_fin" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>

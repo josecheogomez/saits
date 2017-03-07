@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.PreDet" table="pre_det" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.PreDetId">
+            <key-property name="preCod" type="int">
+                <column name="pre_cod" />
+            </key-property>
+            <key-property name="artCod" type="int">
+                <column name="art_cod" />
+            </key-property>
+            <key-property name="depCod" type="int">
+                <column name="dep_cod" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

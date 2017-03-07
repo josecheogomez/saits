@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Organizacion" table="organizacion" catalog="SAITSDB" optimistic-lock="version">
+        <id name="orgCod" type="java.lang.Integer">
+            <column name="org_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="orgDesc" type="string">
+            <column name="org_desc" length="45" />
+        </property>
+        <property name="perCod" type="int">
+            <column name="per_cod" not-null="true">
+                <comment>ecargado o responsable de la organizacion</comment>
+            </column>
+        </property>
+        <property name="orgDir" type="string">
+            <column name="org_dir" length="45" />
+        </property>
+        <property name="orgTel" type="string">
+            <column name="org_tel" length="15" />
+        </property>
+        <property name="orgCel" type="string">
+            <column name="org_cel" length="15" />
+        </property>
+        <property name="orgWeb" type="string">
+            <column name="org_web" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.TarjetaCobro" table="tarjeta_cobro" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.TarjetaCobroId">
+            <key-property name="tarCod" type="int">
+                <column name="tar_cod" />
+            </key-property>
+            <key-property name="cobCod" type="int">
+                <column name="cob_cod" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

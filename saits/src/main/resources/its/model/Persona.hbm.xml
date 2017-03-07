@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Persona" table="persona" catalog="SAITSDB" optimistic-lock="version">
+        <id name="perCod" type="java.lang.Integer">
+            <column name="per_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="perNom" type="string">
+            <column name="per_nom" length="30" />
+        </property>
+        <property name="perApe" type="string">
+            <column name="per_ape" length="30" />
+        </property>
+        <property name="perTpDoc" type="string">
+            <column name="per_tp_doc" length="3" />
+        </property>
+        <property name="perNroDoc" type="string">
+            <column name="per_nro_doc" length="15" />
+        </property>
+        <property name="perFecNac" type="date">
+            <column name="per_fec_nac" length="10" />
+        </property>
+        <property name="perCalle" type="string">
+            <column name="per_calle" length="45">
+                <comment>calle principal</comment>
+            </column>
+        </property>
+        <property name="perNroCasa" type="string">
+            <column name="per_nro_casa" length="7">
+                <comment>nro de casa</comment>
+            </column>
+        </property>
+        <property name="perCallSec" type="string">
+            <column name="per_call_sec" length="45">
+                <comment>calle secundaria</comment>
+            </column>
+        </property>
+        <property name="perTel" type="string">
+            <column name="per_tel" length="15" />
+        </property>
+        <property name="perCel" type="string">
+            <column name="per_cel" length="15" />
+        </property>
+        <property name="perEmail" type="string">
+            <column name="per_email" length="45" />
+        </property>
+        <property name="ciuCod" type="int">
+            <column name="ciu_cod" not-null="true" />
+        </property>
+        <property name="barCod" type="int">
+            <column name="bar_cod" not-null="true" />
+        </property>
+        <property name="nacCod" type="int">
+            <column name="nac_cod" not-null="true" />
+        </property>
+        <property name="actCod" type="int">
+            <column name="act_cod" not-null="true" />
+        </property>
+        <property name="perCarg" type="timestamp">
+            <column name="per_carg" length="19">
+                <comment>fecha y hora de registro</comment>
+            </column>
+        </property>
+        <property name="perClas" type="string">
+            <column name="per_clas" length="45" />
+        </property>
+        <property name="profCod" type="int">
+            <column name="prof_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

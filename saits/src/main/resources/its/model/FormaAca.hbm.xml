@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.FormaAca" table="forma_aca" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.FormaAcaId">
+            <key-property name="forCod" type="int">
+                <column name="for_cod" />
+            </key-property>
+            <key-property name="insCod" type="int">
+                <column name="ins_cod" />
+            </key-property>
+            <key-property name="perCod" type="int">
+                <column name="per_cod" />
+            </key-property>
+        </composite-id>
+        <property name="nivCod" type="int">
+            <column name="niv_cod" not-null="true" />
+        </property>
+        <property name="forLugarEst" type="string">
+            <column name="for_lugar_est" length="45" />
+        </property>
+        <property name="titCod" type="int">
+            <column name="tit_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

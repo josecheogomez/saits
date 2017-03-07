@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.PlanillaAsistencia" table="planilla_asistencia" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.PlanillaAsistenciaId">
+            <key-property name="plaCod" type="int">
+                <column name="pla_cod" />
+            </key-property>
+            <key-property name="plaMat" type="int">
+                <column name="pla_mat" />
+            </key-property>
+            <key-property name="matCod" type="int">
+                <column name="mat_cod" />
+            </key-property>
+        </composite-id>
+        <property name="plaFecEnt" type="date">
+            <column name="pla_fec_ent" length="10" />
+        </property>
+        <property name="plaAsCarg" type="timestamp">
+            <column name="pla_as_carg" length="19" />
+        </property>
+        <property name="usuCod" type="int">
+            <column name="usu_cod" not-null="true" />
+        </property>
+        <property name="sucCod" type="int">
+            <column name="suc_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

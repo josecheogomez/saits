@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.PlanCurso" table="plan_curso" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.PlanCursoId">
+            <key-property name="plaCod" type="int">
+                <column name="pla_cod" />
+            </key-property>
+            <key-property name="malCod" type="int">
+                <column name="mal_cod" />
+            </key-property>
+            <key-property name="carCod" type="int">
+                <column name="car_cod" />
+            </key-property>
+        </composite-id>
+        <property name="plaCarga" type="timestamp">
+            <column name="pla_carga" length="19" />
+        </property>
+        <property name="plaInicio" type="date">
+            <column name="pla_inicio" length="10" />
+        </property>
+        <property name="plaFin" type="date">
+            <column name="pla_fin" length="10" />
+        </property>
+        <property name="plaTurno" type="string">
+            <column name="pla_turno" length="15">
+                <comment>ma&#195;&#177;ana, tarde, noche</comment>
+            </column>
+        </property>
+        <property name="plaModalidad" type="string">
+            <column name="pla_modalidad" length="15">
+                <comment>presencial, semipresencial</comment>
+            </column>
+        </property>
+        <property name="plaEstado" type="java.lang.Character">
+            <column name="pla_estado" length="1">
+                <comment>A=Activo I=Inactivo(anulado)</comment>
+            </column>
+        </property>
+        <property name="lun" type="java.lang.Boolean">
+            <column name="lun" />
+        </property>
+        <property name="mar" type="java.lang.Boolean">
+            <column name="mar" />
+        </property>
+        <property name="mie" type="java.lang.Boolean">
+            <column name="mie" />
+        </property>
+        <property name="jue" type="java.lang.Boolean">
+            <column name="jue" />
+        </property>
+        <property name="vie" type="java.lang.Boolean">
+            <column name="vie" />
+        </property>
+        <property name="sab" type="java.lang.Boolean">
+            <column name="sab" />
+        </property>
+        <property name="plaCupo" type="java.lang.Integer">
+            <column name="pla_cupo">
+                <comment>cupo de inscriptos</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

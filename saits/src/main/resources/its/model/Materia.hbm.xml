@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Materia" table="materia" catalog="SAITSDB" optimistic-lock="version">
+        <id name="matCod" type="java.lang.Integer">
+            <column name="mat_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="matIden" type="string">
+            <column name="mat_iden" length="30" not-null="true">
+                <comment>identificador de materia o codigo de materia</comment>
+            </column>
+        </property>
+        <property name="matDesc" type="string">
+            <column name="mat_desc" length="80" />
+        </property>
+        <property name="matCred" type="java.lang.Integer">
+            <column name="mat_cred" />
+        </property>
+        <property name="uniCod" type="int">
+            <column name="uni_cod" not-null="true" />
+        </property>
+        <property name="semCod" type="int">
+            <column name="sem_cod" not-null="true" />
+        </property>
+        <property name="curCod" type="int">
+            <column name="cur_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

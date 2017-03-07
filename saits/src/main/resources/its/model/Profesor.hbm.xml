@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Profesor" table="profesor" catalog="SAITSDB" optimistic-lock="version">
+        <id name="proCod" type="java.lang.Integer">
+            <column name="pro_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="proCarg" type="timestamp">
+            <column name="pro_carg" length="19" />
+        </property>
+        <property name="proFecIni" type="date">
+            <column name="pro_fec_ini" length="10" />
+        </property>
+        <property name="proFecFin" type="date">
+            <column name="pro_fec_fin" length="10" />
+        </property>
+        <property name="proEstado" type="java.lang.Character">
+            <column name="pro_estado" length="1">
+                <comment>A=Activo I=inactivo</comment>
+            </column>
+        </property>
+        <property name="obs" type="string">
+            <column name="obs" length="45" />
+        </property>
+        <property name="perCod" type="int">
+            <column name="per_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

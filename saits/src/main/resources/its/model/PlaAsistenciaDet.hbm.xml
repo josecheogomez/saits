@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.PlaAsistenciaDet" table="pla_asistencia_det" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.PlaAsistenciaDetId">
+            <key-property name="insCod" type="int">
+                <column name="ins_cod" />
+            </key-property>
+            <key-property name="perCod" type="int">
+                <column name="per_cod" />
+            </key-property>
+            <key-property name="plaCod" type="int">
+                <column name="pla_cod" />
+            </key-property>
+            <key-property name="plaMat" type="int">
+                <column name="pla_mat" />
+            </key-property>
+            <key-property name="matCod" type="int">
+                <column name="mat_cod" />
+            </key-property>
+        </composite-id>
+        <property name="auno" type="java.lang.Boolean">
+            <column name="auno" />
+        </property>
+        <property name="ados" type="java.lang.Boolean">
+            <column name="ados" />
+        </property>
+        <property name="atres" type="java.lang.Boolean">
+            <column name="atres" />
+        </property>
+        <property name="acuatro" type="java.lang.Boolean">
+            <column name="acuatro" />
+        </property>
+        <property name="acinco" type="java.lang.Boolean">
+            <column name="acinco" />
+        </property>
+        <property name="aseis" type="java.lang.Boolean">
+            <column name="aseis" />
+        </property>
+        <property name="asiete" type="java.lang.Boolean">
+            <column name="asiete" />
+        </property>
+        <property name="aocho" type="java.lang.Boolean">
+            <column name="aocho" />
+        </property>
+        <property name="anueve" type="java.lang.Boolean">
+            <column name="anueve" />
+        </property>
+    </class>
+</hibernate-mapping>

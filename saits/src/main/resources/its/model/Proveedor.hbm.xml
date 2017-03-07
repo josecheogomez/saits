@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Proveedor" table="proveedor" catalog="SAITSDB" optimistic-lock="version">
+        <id name="proCod" type="int">
+            <column name="pro_cod" />
+            <generator class="assigned" />
+        </id>
+        <property name="proDesc" type="string">
+            <column name="pro_desc" length="45" />
+        </property>
+        <property name="tppCod" type="int">
+            <column name="tpp_cod" not-null="true" />
+        </property>
+        <property name="proTpd" type="string">
+            <column name="pro_tpd" length="15">
+                <comment>tipo de documento</comment>
+            </column>
+        </property>
+        <property name="proNro" type="string">
+            <column name="pro_nro" length="10" />
+        </property>
+        <property name="proTel" type="string">
+            <column name="pro_tel" length="15" />
+        </property>
+        <property name="proCel" type="string">
+            <column name="pro_cel" length="15" />
+        </property>
+        <property name="proDir" type="string">
+            <column name="pro_dir" length="60" />
+        </property>
+        <property name="proEma" type="string">
+            <column name="pro_ema" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

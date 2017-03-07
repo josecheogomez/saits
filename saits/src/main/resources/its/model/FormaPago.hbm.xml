@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.FormaPago" table="forma_pago" catalog="SAITSDB" optimistic-lock="version">
+        <id name="fpgCod" type="java.lang.Integer">
+            <column name="fpg_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="fpgDesc" type="string">
+            <column name="fpg_desc" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

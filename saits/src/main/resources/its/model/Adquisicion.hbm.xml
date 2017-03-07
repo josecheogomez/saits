@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Adquisicion" table="adquisicion" catalog="SAITSDB" optimistic-lock="version">
+        <id name="adqCod" type="java.lang.Integer">
+            <column name="adq_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="adqFec" type="date">
+            <column name="adq_fec" length="10" />
+        </property>
+        <property name="adqCarg" type="timestamp">
+            <column name="adq_carg" length="19" />
+        </property>
+        <property name="tpAdq" type="string">
+            <column name="tp_adq" length="10">
+                <comment>compra, donacion</comment>
+            </column>
+        </property>
+        <property name="proCod" type="int">
+            <column name="pro_cod" not-null="true" />
+        </property>
+        <property name="adqEstado" type="java.lang.Character">
+            <column name="adq_estado" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

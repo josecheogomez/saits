@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Sucursal" table="sucursal" catalog="SAITSDB" optimistic-lock="version">
+        <id name="sucCod" type="java.lang.Integer">
+            <column name="suc_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="sucNombre" type="string">
+            <column name="suc_nombre" length="45" />
+        </property>
+        <property name="sucRuc" type="string">
+            <column name="suc_ruc" length="15" />
+        </property>
+        <property name="callePrincipal" type="string">
+            <column name="calle_principal" length="45" />
+        </property>
+        <property name="nro" type="string">
+            <column name="nro" length="6" />
+        </property>
+        <property name="calleSecundaria" type="string">
+            <column name="calle_secundaria" length="45" />
+        </property>
+        <property name="sucTelefono" type="string">
+            <column name="suc_telefono" length="15" />
+        </property>
+        <property name="sucCelular" type="string">
+            <column name="suc_celular" length="15" />
+        </property>
+        <property name="sucEmail" type="string">
+            <column name="suc_email" length="45" />
+        </property>
+        <property name="fechaHoraCarga" type="timestamp">
+            <column name="fecha_hora_carga" length="19" />
+        </property>
+        <property name="empCod" type="int">
+            <column name="emp_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

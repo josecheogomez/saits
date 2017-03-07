@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Benefactor" table="benefactor" catalog="SAITSDB" optimistic-lock="version">
+        <id name="benCod" type="java.lang.Integer">
+            <column name="ben_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="benRazonSocial" type="string">
+            <column name="ben_razon_social" length="45" />
+        </property>
+        <property name="benTipoDoc" type="string">
+            <column name="ben_tipo_doc" length="10" />
+        </property>
+        <property name="benNroDoc" type="string">
+            <column name="ben_nro_doc" length="10" />
+        </property>
+        <property name="benDireccion" type="string">
+            <column name="ben_direccion" length="45" />
+        </property>
+        <property name="benTelefono" type="string">
+            <column name="ben_telefono" length="15" />
+        </property>
+        <property name="benCelular" type="string">
+            <column name="ben_celular" length="15" />
+        </property>
+        <property name="benEmail" type="string">
+            <column name="ben_email" length="80" />
+        </property>
+        <property name="benContacto" type="string">
+            <column name="ben_contacto" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

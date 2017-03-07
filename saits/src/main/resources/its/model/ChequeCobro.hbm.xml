@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.ChequeCobro" table="cheque_cobro" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.ChequeCobroId">
+            <key-property name="cheCod" type="int">
+                <column name="che_cod" />
+            </key-property>
+            <key-property name="cobCod" type="int">
+                <column name="cob_cod" />
+            </key-property>
+        </composite-id>
+        <property name="nroCheq" type="string">
+            <column name="nro_cheq" length="45" not-null="true" />
+        </property>
+        <property name="fechaEmision" type="date">
+            <column name="fecha_emision" length="10" />
+        </property>
+        <property name="fechaCobro" type="date">
+            <column name="fecha_cobro" length="10" />
+        </property>
+        <property name="titCod" type="int">
+            <column name="tit_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

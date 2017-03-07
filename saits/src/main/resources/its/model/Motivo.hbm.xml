@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.Motivo" table="motivo" catalog="SAITSDB" optimistic-lock="version">
+        <id name="motCod" type="java.lang.Integer">
+            <column name="mot_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="motDesc" type="string">
+            <column name="mot_desc" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

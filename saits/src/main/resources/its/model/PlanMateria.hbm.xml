@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.PlanMateria" table="plan_materia" catalog="SAITSDB" optimistic-lock="version">
+        <composite-id name="id" class="its.model.PlanMateriaId">
+            <key-property name="plaMat" type="int">
+                <column name="pla_mat" />
+            </key-property>
+            <key-property name="matCod" type="int">
+                <column name="mat_cod" />
+            </key-property>
+        </composite-id>
+        <property name="proCod" type="int">
+            <column name="pro_cod" not-null="true" />
+        </property>
+        <property name="lunes" type="java.lang.Boolean">
+            <column name="lunes" />
+        </property>
+        <property name="martes" type="java.lang.Boolean">
+            <column name="martes" />
+        </property>
+        <property name="miercoles" type="java.lang.Boolean">
+            <column name="miercoles" />
+        </property>
+        <property name="jueves" type="java.lang.Boolean">
+            <column name="jueves" />
+        </property>
+        <property name="viernes" type="java.lang.Boolean">
+            <column name="viernes" />
+        </property>
+        <property name="sabados" type="java.lang.Boolean">
+            <column name="sabados" />
+        </property>
+        <property name="plaMatIni" type="date">
+            <column name="pla_mat_ini" length="10" />
+        </property>
+        <property name="plaMatFin" type="date">
+            <column name="pla_mat_fin" length="10" />
+        </property>
+        <property name="plaMatBim" type="string">
+            <column name="pla_mat_bim" length="10">
+                <comment>cargamos el bimestre al que corresonde esta materia</comment>
+            </column>
+        </property>
+        <property name="plaMatHpe" type="java.lang.Integer">
+            <column name="pla_mat_hpe">
+                <comment>hora pedagogica</comment>
+            </column>
+        </property>
+        <property name="usuCod" type="int">
+            <column name="usu_cod" not-null="true" />
+        </property>
+        <property name="sucCod" type="int">
+            <column name="suc_cod" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

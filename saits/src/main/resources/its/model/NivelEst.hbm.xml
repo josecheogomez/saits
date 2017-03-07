@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="its.model.NivelEst" table="nivel_est" catalog="SAITSDB" optimistic-lock="version">
+        <id name="nivCod" type="java.lang.Integer">
+            <column name="niv_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="nivDesc" type="string">
+            <column name="niv_desc" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>
