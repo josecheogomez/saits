@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../plantilla/temPrincipal.xhtml">
+
+            <ui:define name="content">
+                <b:container>
+                <h4>Registro de Empresa</h4>
+                <b:growl id="growlMsg" show-detail="true" allowDismiss="true" delay="1000" escape="true"/>
+                <b:button value="Nuevo" look="primary" onclick="PF('dialogRegistro').show();"/>
+                <b:jumbotron>
+                    <b:container>
+                        <h:form id="frmPrincipal">
+                            <b:dataTable value="#{empresaBean.listarEmpresa}"
+                                         var="td"
+                                         id="tablaDatos" responsive="true">
+                                <b:dataTableColumn label="Codigo" value="#{td.empCod}"/>
+                                <b:dataTableColumn label="Nombre" value="#{td.empNom}"/>
+                                <!-- configurar para que mustre los campos de la tabla de acuerdo al
+                                tamaño de pantalla-->
+                                <b:dataTableColumn label="Telefono" value="#{td.empTelefono}"/>
+                                <b:dataTableColumn label="Celular" value="#{td.empCelular}"/>
+                                <b:dataTableColumn label="Email" value="#{td.empEmail}"/>
+                                <b:dataTableColumn label="Slogan" value="#{td.empSlogan}"/>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton value="Editar" look="warning" oncomplete="PF('dialogEditar').show();"
+                                                     update=":frmEditar">
+                                        <f:setPropertyActionListener target="#{empresaBean.empresa}" value="#{td}"/>                     
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton value="Borrar" look="danger" oncomplete="PF('dialogEliminar').show();"
+                                                     update=":frmEliminar">
+                                        <f:setPropertyActionListener target="#{empresaBean.empresa}" value="#{td}"/>
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                    </b:container>
+                </b:jumbotron>    
+                </b:container>
+                <h:form id="frmRegistro">
+                    <p:dialog id="dlgRegistro" widgetVar="dialogRegistro" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Registro">
+                        <h:panelGrid id="pnlRegistro" columns="2">
+                            <h:outputText value="Nombre" id="txtNombre" />
+                            <b:inputText value="#{empresaBean.empresa.empNom}" required="true"/>
+                            <h:outputText value="Calle Principal" id="txtPrincipal" />
+                            <b:inputText value="#{empresaBean.empresa.callePrincipal}" required="false"/>
+                            <h:outputText value="N°" id="txtNro" />
+                            <b:inputText value="#{empresaBean.empresa.nro}" required="false"/>
+                            <h:outputText value="Trasversal" id="txtTrasversal" />
+                            <b:inputText value="#{empresaBean.empresa.calleSecundaria}" required="false"/>
+                            <h:outputText value="Telefono" id="txtTel" />
+                            <b:inputText value="#{empresaBean.empresa.empTelefono}" required="false"/>
+                            <h:outputText value="Celular" id="txtCelular" />
+                            <b:inputText value="#{empresaBean.empresa.empCelular}" required="false"/>
+                            <h:outputText value="Email" id="txtEmail" />
+                            <b:inputText value="#{empresaBean.empresa.empEmail}" required="false"/>
+                            <h:outputText value="Slogan" id="txtSlogan" />
+                            <b:inputText value="#{empresaBean.empresa.empSlogan}" required="false"/>
+                        </h:panelGrid>
+                        <b:commandButton value="Guardar" actionListener="#{empresaBean.nuevoEmpresa()}" update=":frmPrincipal frmRegistro :growlMsg"
+                                          oncomplete="PF('dialogRegistro').hide();"/>
+                        <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
+                    </p:dialog>
+                </h:form>    
+                <h:form id="frmEditar">
+                    <p:dialog id="dlgEditar" widgetVar="dialogEditar" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Editar">
+                        <h:panelGrid id="pnlEditar" columns="2" style="margin: 0 auto">
+                            <h:outputText value="Nombre" id="txtNombre" />
+                            <b:inputText value="#{empresaBean.empresa.empNom}" />
+                                                        <h:outputText value="Calle Principal" id="txtPrincipal" />
+                            <b:inputText value="#{empresaBean.empresa.callePrincipal}" required="false"/>
+                            <h:outputText value="N°" id="txtNro" />
+                            <b:inputText value="#{empresaBean.empresa.nro}" required="false"/>
+                            <h:outputText value="Trasversal" id="txtTrasversal" />
+                            <b:inputText value="#{empresaBean.empresa.calleSecundaria}" required="false"/>
+                            <h:outputText value="Telefono" id="txtTel" />
+                            <b:inputText value="#{empresaBean.empresa.empTelefono}" required="false"/>
+                            <h:outputText value="Celular" id="txtCelular" />
+                            <b:inputText value="#{empresaBean.empresa.empCelular}" required="false"/>
+                            <h:outputText value="Email" id="txtEmail" />
+                            <b:inputText value="#{empresaBean.empresa.empEmail}" required="false"/>
+                            <h:outputText value="Slogan" id="txtSlogan" />
+                            <b:inputText value="#{empresaBean.empresa.empSlogan}" required="false"/>
+                        </h:panelGrid>
+                        <p:commandButton value="Guardar" actionListener="#{empresaBean.modificarEmpresa()}"
+                                         update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEditar').hide();"/>
+                        <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"/>
+                    </p:dialog>    
+                </h:form>
+                <h:form id="frmEliminar">
+                    <p:dialog id="dlgEliminar" widgetVar="dialogEliminar" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Eliminar">
+                        <h:panelGrid id="pnlEliminar" columns="2" style="margin: 0 auto">
+                            <h:outputText value="Esta seguro de Eliminar el Registro?"/><br></br>
+                            <p:commandButton value="SI" actionListener="#{empresaBean.eliminarEmpresa()}"
+                                             update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEliminar').hide();"/>
+                            <p:commandButton value="NO" oncomplete="PF('dialogEliminar').hide();"/>    
+                        </h:panelGrid>
+                    </p:dialog>    
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

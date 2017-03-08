@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>saits</title>
+    </h:head>
+
+    <h:body>
+        
+        <div id="top">
+            <ui:insert name="top">
+                    <h:form id="menuSistema">     
+                    <b:navBar>
+                        <b:navbarLinks>
+                          <b:navLink value="Inicio" href="http://localhost:8080/saitssistem/"></b:navLink>
+                        <b:dropMenu value="Mantenimiento">
+                            <b:dropMenu value="Academico">
+                                <b:navLink value="Carrera" outcome="/vista/referenciales/carrera.xhtml"/>
+                                <b:navLink value="Curso" outcome="/vista/referenciales/curso.xhtml"/>
+                                <b:navLink value="Motivo" outcome="/vista/referenciales/motivo.xhtml"/>
+                            </b:dropMenu>
+                            <b:dropMenu value="Administrativo">
+                                <b:navLink value="Caja" outcome="/vista/referenciales/caja.xhtml"/>
+                              <!--  <b:navLink value="Forma de Pago" outcome="/vista/referenciales/formapago.xhtml"/>
+                            -->
+                              </b:dropMenu>
+                            <b:dropMenu value="Biblioteca">
+                                <b:navLink value="Deposito" outcome="/vista/referenciales/deposito.xhtml"/>
+                            </b:dropMenu>
+                            <b:dropMenu value="Otros">
+                                <b:navLink value="Actividad" outcome="/vista/referenciales/actividad.xhtml"/>
+                                <b:navLink value="Barrio" outcome="/vista/referenciales/barrio.xhtml"/>
+                                <b:navLink value="Ciudad" outcome="/vista/referenciales/ciudad.xhtml"/>
+                                <b:navLink value="Empresa" outcome="/vista/referenciales/empresa.xhtml"/>
+                            </b:dropMenu>
+                        </b:dropMenu>  
+                        </b:navbarLinks>
+                    </b:navBar>
+                </h:form>
+            </ui:insert>
+        </div>
+
+        <div id="content" class="center_content">
+            
+            <ui:insert name="content">
+                <b:jumbotron>
+                    <b:container>
+                        <p>Bienvenido al sistema</p>
+                    </b:container>
+                </b:jumbotron>
+            </ui:insert>   
+        
+        </div>
+
+        <div id="bottom">
+            <ui:insert name="bottom">&copy;2015 Saits System</ui:insert>
+        </div>
+
+    </h:body>
+
+</html>
