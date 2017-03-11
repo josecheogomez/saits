@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.ciudadDao;
 import its.imp.ciudadImpDao;
 import its.model.Ciudad;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class ciudadBean {
         ciudadDao dao= new ciudadImpDao();
         dao.nuevoCiudad(ciudad);
         ciudad= new Ciudad();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarCiudad()
     {
         ciudadDao dao= new ciudadImpDao();
         dao.actualizarCiudad(ciudad);
         ciudad= new Ciudad();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarCiudad()
     {
       ciudadDao dao=new ciudadImpDao();
       dao.borrarCiudad(ciudad);
       ciudad= new Ciudad();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.empresaDao;
 import its.imp.empresaImpDao;
 import its.model.Empresa;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class empresaBean {
         empresaDao dao= new empresaImpDao();
         dao.nuevoEmpresa(empresa);
         empresa= new Empresa();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarEmpresa()
     {
         empresaDao dao= new empresaImpDao();
         dao.actualizarEmpresa(empresa);
         empresa= new Empresa();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarEmpresa()
     {
       empresaDao dao=new empresaImpDao();
       dao.borrarEmpresa(empresa);
       empresa= new Empresa();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

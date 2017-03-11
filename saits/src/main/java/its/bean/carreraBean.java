@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.carreraDao;
 import its.imp.carreraImpDao;
 import its.model.Carrera;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class carreraBean {
         carreraDao dao= new carreraImpDao();
         dao.nuevoCarrera(carrera);
         carrera= new Carrera();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarCarrera()
     {
         carreraDao dao= new carreraImpDao();
         dao.actualizarCarrera(carrera);
         carrera= new Carrera();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarCarrera()
     {
       carreraDao dao=new carreraImpDao();
       dao.borrarCarrera(carrera);
       carrera= new Carrera();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

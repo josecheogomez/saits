@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.motivoDao;
 import its.imp.motivoImpDao;
 import its.model.Motivo;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class motivoBean {
         motivoDao dao= new motivoImpDao();
         dao.nuevoMotivo(motivo);
         motivo= new Motivo();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarMotivo()
     {
         motivoDao dao= new motivoImpDao();
         dao.actualizarMotivo(motivo);
         motivo= new Motivo();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarMotivo()
     {
       motivoDao dao=new motivoImpDao();
       dao.borrarMotivo(motivo);
       motivo= new Motivo();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

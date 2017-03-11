@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.barrioDao;
 import its.imp.barrioImpDao;
 import its.model.Barrio;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,6 +54,7 @@ public class barrioBean {
         barrioDao dao= new barrioImpDao();
         dao.nuevoBarrio(barrio);
         barrio= new Barrio();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
         
     }
     public void modificarBarrio()
@@ -59,12 +62,14 @@ public class barrioBean {
         barrioDao dao= new barrioImpDao();
         dao.actualizarBarrio(barrio);
         barrio= new Barrio();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarBarrio()
     {
       barrioDao dao=new barrioImpDao();
       dao.borrarBarrio(barrio);
       barrio= new Barrio();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

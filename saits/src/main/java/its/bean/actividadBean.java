@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.actividadDao;
 import its.imp.actividadImpDao;
 import its.model.Actividad;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,6 +54,7 @@ public class actividadBean {
         actividadDao dao= new actividadImpDao();
         dao.nuevoActividad(actividad);
         actividad= new Actividad();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
         
     }
     public void modificarActividad()
@@ -59,12 +62,14 @@ public class actividadBean {
         actividadDao dao= new actividadImpDao();
         dao.actualizarActividad(actividad);
         actividad= new Actividad();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarActividad()
     {
       actividadDao dao=new actividadImpDao();
       dao.borrarActividad(actividad);
       actividad= new Actividad();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

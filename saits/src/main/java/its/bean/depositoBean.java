@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.depositoDao;
 import its.imp.depositoImpDao;
 import its.model.Deposito;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,6 +54,8 @@ public class depositoBean {
         depositoDao dao= new depositoImpDao();
         dao.nuevoDeposito(deposito);
         deposito= new Deposito();
+        //mensaje confirmacion para growl
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
         
     }
     public void modificarDeposito()
@@ -59,12 +63,15 @@ public class depositoBean {
         depositoDao dao= new depositoImpDao();
         dao.actualizarDeposito(deposito);
         deposito= new Deposito();
+        //mensaje confirma actualizacion
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarDeposito()
     {
       depositoDao dao=new depositoImpDao();
       dao.borrarDeposito(deposito);
       deposito= new Deposito();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

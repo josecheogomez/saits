@@ -14,6 +14,7 @@
             <ui:define name="content">
                 <b:container>
                 <h4>Registro de Ciudad</h4>
+                <b:growl id="growlMsg" show-detail="true" allowDismiss="true" delay="1000" escape="true"/>
                 <b:button value="Nuevo" look="primary" onclick="PF('dialogRegistro').show();"/>
                 <b:jumbotron>
                     <b:container>
@@ -47,7 +48,7 @@
                             <h:outputText value="Nombre" id="txtNombre" />
                             <b:inputText value="#{ciudadBean.ciudad.ciuDesc}" />
                         </p:panelGrid>
-                        <b:commandButton value="Guardar" actionListener="#{ciudadBean.nuevoCiudad()}" update=":frmPrincipal frmRegistro"
+                        <b:commandButton value="Guardar" actionListener="#{ciudadBean.nuevoCiudad()}" update=":frmPrincipal frmRegistro :growlMsg"
                                          oncomplete="PF('dialogRegistro').hide();"/>
                         <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
                     </p:dialog>
@@ -60,7 +61,7 @@
                             <b:inputText value="#{ciudadBean.ciudad.ciuDesc}" />
                         </h:panelGrid>
                         <p:commandButton value="Guardar" actionListener="#{ciudadBean.modificarCiudad()}"
-                                         update="frmPrincipal:tablaDatos" oncomplete="PF('dialogEditar').hide();"/>
+                                         update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEditar').hide();"/>
                         <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"/>
                     </p:dialog>    
                 </h:form>
@@ -70,7 +71,7 @@
                         <h:panelGrid id="pnlEliminar" columns="2" style="margin: 0 auto">
                             <h:outputText value="Esta seguro de Eliminar el Registro?"/><br></br>
                             <p:commandButton value="SI" actionListener="#{ciudadBean.eliminarCiudad()}"
-                                             update="frmPrincipal:tablaDatos" oncomplete="PF('dialogEliminar').hide();"/>
+                                             update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEliminar').hide();"/>
                             <p:commandButton value="NO" oncomplete="PF('dialogEliminar').hide();"/>    
                         </h:panelGrid>
                     </p:dialog>    

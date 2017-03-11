@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.cajaDao;
 import its.imp.cajaImpDao;
 import its.model.Caja;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class cajaBean {
         cajaDao dao= new cajaImpDao();
         dao.nuevoCaja(caja);
         caja= new Caja();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarCaja()
     {
         cajaDao dao= new cajaImpDao();
         dao.actualizarCaja(caja);
         caja= new Caja();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarCaja()
     {
       cajaDao dao=new cajaImpDao();
       dao.borrarCaja(caja);
       caja= new Caja();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.cursoDao;
 import its.imp.cursoImpDao;
 import its.model.Curso;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class cursoBean {
         cursoDao dao= new cursoImpDao();
         dao.nuevoCurso(curso);
         curso= new Curso();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarCurso()
     {
         cursoDao dao= new cursoImpDao();
         dao.actualizarCurso(curso);
         curso= new Curso();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarCurso()
     {
       cursoDao dao=new cursoImpDao();
       dao.borrarCurso(curso);
       curso= new Curso();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }

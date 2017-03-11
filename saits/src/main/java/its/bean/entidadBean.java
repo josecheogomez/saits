@@ -11,6 +11,8 @@ import javax.faces.bean.ViewScoped;
 import its.dao.entidadDao;
 import its.imp.entidadImpDao;
 import its.model.Entidad;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
@@ -52,19 +54,21 @@ public class entidadBean {
         entidadDao dao= new entidadImpDao();
         dao.nuevoEntidad(entidad);
         entidad= new Entidad();
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
     }
     public void modificarEntidad()
     {
         entidadDao dao= new entidadImpDao();
         dao.actualizarEntidad(entidad);
         entidad= new Entidad();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Actualizados"));
     }
     public void eliminarEntidad()
     {
       entidadDao dao=new entidadImpDao();
       dao.borrarEntidad(entidad);
       entidad= new Entidad();
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
    
 }
