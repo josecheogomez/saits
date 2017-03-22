@@ -19,21 +19,22 @@
                 <b:jumbotron>
                     <b:container>
                         <h:form id="frmPrincipal">
-                            <b:dataTable value="#{motivoBean.listarNacionalidad}"
+                            <b:dataTable value="#{nacionalidadBean.listarNacionalidad}"
                                          var="td"
                                          id="tablaDatos">
                                 <b:dataTableColumn label="Codigo" value="#{td.nacCod}"/>
                                 <b:dataTableColumn label="Nombre" value="#{td.nacDesc}"/>
+                                <b:dataTableColumn label="Abreviatura" value="#{td.nacAbre}"/>
                                 <b:dataTableColumn label="">
                                     <b:commandButton value="Editar" look="warning" oncomplete="PF('dialogEditar').show();"
                                                      update=":frmEditar">
-                                        <f:setPropertyActionListener target="#{motivoBean.motivo}" value="#{td}"/>                     
+                                        <f:setPropertyActionListener target="#{nacionalidadBean.nacionalidad}" value="#{td}"/>                     
                                     </b:commandButton>
                                 </b:dataTableColumn>
                                 <b:dataTableColumn label="">
                                     <b:commandButton value="Borrar" look="danger" oncomplete="PF('dialogEliminar').show();"
                                                      update=":frmEliminar">
-                                        <f:setPropertyActionListener target="#{motivoBean.motivo}" value="#{td}"/>
+                                        <f:setPropertyActionListener target="#{nacionalidadBean.nacionalidad}" value="#{td}"/>
                                     </b:commandButton>
                                 </b:dataTableColumn>
                             </b:dataTable>
@@ -46,9 +47,10 @@
                               resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Registro">
                         <p:panelGrid id="pnlRegistro">
                             <h:outputText value="Nombre" id="txtNombre" />
-                            <b:inputText value="#{motivoBean.motivo.nacDesc}" required="true"/>
+                            <b:inputText value="#{nacionalidadBean.nacionalidad.nacDesc}" required="true"/>
+                            <b:inputText value="#{nacionalidadBean.nacionalidad.nacAbre}" required="true"/>
                         </p:panelGrid>
-                        <b:commandButton value="Guardar" actionListener="#{motivoBean.nuevoNacionalidad()}" update=":frmPrincipal frmRegistro :growlMsg"
+                        <b:commandButton value="Guardar" actionListener="#{nacionalidadBean.nuevoNacionalidad()}" update=":frmPrincipal frmRegistro :growlMsg"
                                           oncomplete="PF('dialogRegistro').hide();"/>
                         <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
                     </p:dialog>
@@ -58,9 +60,10 @@
                               resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Editar">
                         <h:panelGrid id="pnlEditar" columns="2" style="margin: 0 auto">
                             <h:outputText value="Nombre" id="txtNombre" />
-                            <b:inputText value="#{motivoBean.motivo.nacDesc}" />
+                            <b:inputText value="#{nacionalidadBean.nacionalidad.nacDesc}" />
+                            <b:inputText value="#{nacionalidadBean.nacionalidad.nacAbre}" />
                         </h:panelGrid>
-                        <p:commandButton value="Guardar" actionListener="#{motivoBean.modificarNacionalidad()}"
+                        <p:commandButton value="Guardar" actionListener="#{nacionalidadBean.modificarNacionalidad()}"
                                          update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEditar').hide();"/>
                         <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"/>
                     </p:dialog>    
@@ -70,7 +73,7 @@
                               resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Eliminar">
                         <h:panelGrid id="pnlEliminar" columns="2" style="margin: 0 auto">
                             <h:outputText value="Esta seguro de Eliminar el Registro?"/><br></br>
-                            <p:commandButton value="SI" actionListener="#{motivoBean.eliminarNacionalidad()}"
+                            <p:commandButton value="SI" actionListener="#{nacionalidadBean.eliminarNacionalidad()}"
                                              update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEliminar').hide();"/>
                             <p:commandButton value="NO" oncomplete="PF('dialogEliminar').hide();"/>    
                         </h:panelGrid>
