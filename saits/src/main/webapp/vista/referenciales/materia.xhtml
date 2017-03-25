@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../plantilla/temPrincipal.xhtml">
+
+            <ui:define name="content">
+                <b:container>
+                <h4>Registro de Materia</h4>
+                <b:growl id="growlMsg" show-detail="true" allowDismiss="true" delay="1000" escape="true"/>
+                <b:button value="Nuevo" look="primary" onclick="PF('dialogRegistro').show();"/>
+                <b:jumbotron>
+                    <b:container>
+                        <h:form id="frmPrincipal">
+                            <b:dataTable value="#{materiaBean.listarMateria}"
+                                         var="td"
+                                         id="tablaDatos">
+                                <b:dataTableColumn label="Codigo" value="#{td.matCod}"/>
+                                <b:dataTableColumn label="Nombre" value="#{td.matIden}"/>
+                                <b:dataTableColumn label="Codigo" value="#{td.matDesc}"/>
+                                <b:dataTableColumn label="Nombre" value="#{td.matCred}"/>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton value="Editar" look="warning" oncomplete="PF('dialogEditar').show();"
+                                                     update=":frmEditar">
+                                        <f:setPropertyActionListener target="#{materiaBean.materia}" value="#{td}"/>                     
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton value="Borrar" look="danger" oncomplete="PF('dialogEliminar').show();"
+                                                     update=":frmEliminar">
+                                        <f:setPropertyActionListener target="#{materiaBean.materia}" value="#{td}"/>
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                    </b:container>
+                </b:jumbotron>    
+                </b:container>
+                <h:form id="frmRegistro">
+                    <p:dialog id="dlgRegistro" widgetVar="dialogRegistro" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Registro">
+                        <p:panelGrid id="pnlRegistro">
+                            <h:outputText value="Nombre" id="txtNombre" />
+                            <b:inputText value="#{materiaBean.materia.matDesc}" required="true"/>
+                            <h:outputText value="Identificador" id="txtIdentificador" />
+                            <b:inputText value="#{materiaBean.materia.matIden}"/>
+                            <h:outputText value="Credito" id="txtCredito" />
+                            <b:inputText value="#{materiaBean.materia.matCred}"/>
+                            <h:outputText value="Unidad" id="txtUnidad"/>
+                            <h:panelGrid id="gridBuscarDatosUnidad" columns="5">
+                                    <p:outputLabel value="Codigo" style="font-weight: bold;"/>
+                                    <p:inputText id="txtBuscarUnidad" value="#{unidadBean.codigoUnidad}" size="12"
+                                                 converter="#{Integer}" converterMessage="El codigo debe ser numerico">
+                                        
+                                    </p:inputText>
+                                    <p:commandButton value="..." oncomplete="PF('dialogUnidad').show();" update="dlgUnidad"/>
+                            </h:panelGrid>
+                        </p:panelGrid>
+                        <b:commandButton value="Guardar" actionListener="#{materiaBean.nuevoMateria()}" update=":frmPrincipal frmRegistro :growlMsg"
+                                          oncomplete="PF('dialogRegistro').hide();"/>
+                        <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
+                    </p:dialog>
+                           <!--dialgo para mostrar datos del sistema -->
+                    <p:dialog id="dlgUnidad" widgetVar="dialogUnidad" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaUnidad" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{unidadBean.listarUnidad}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.uniCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.uniDesc}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{unidadBean.agregarDatosUnidad(ct.uniCod)}" oncomplete="PF('dialogUnidad').hide();"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogClientes).hide();"/>
+                    </p:dialog>
+                </h:form>    
+                <h:form id="frmEditar">
+                    <p:dialog id="dlgEditar" widgetVar="dialogEditar" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Editar">
+                        <h:panelGrid id="pnlEditar" columns="2" style="margin: 0 auto">
+                            <h:outputText value="Nombre" id="txtNombre" />
+                            <b:inputText value="#{materiaBean.materia.matIden}" />
+                            <h:outputText value="Identificador" id="txtIdentificador" />
+                            <b:inputText value="#{materiaBean.materia.matIden}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Guardar" actionListener="#{materiaBean.modificarMateria()}"
+                                         update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEditar').hide();"/>
+                        <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"/>
+                    </p:dialog>    
+                </h:form>
+                <h:form id="frmEliminar">
+                    <p:dialog id="dlgEliminar" widgetVar="dialogEliminar" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Eliminar">
+                        <h:panelGrid id="pnlEliminar" columns="2" style="margin: 0 auto">
+                            <h:outputText value="Esta seguro de Eliminar el Registro?"/><br></br>
+                            <p:commandButton value="SI" actionListener="#{materiaBean.eliminarMateria()}"
+                                             update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEliminar').hide();"/>
+                            <p:commandButton value="NO" oncomplete="PF('dialogEliminar').hide();"/>    
+                        </h:panelGrid>
+                    </p:dialog>    
+                </h:form>
+                
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
