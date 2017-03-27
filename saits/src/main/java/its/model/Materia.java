@@ -8,7 +8,7 @@ package its.model;
  */
 public class Materia  implements java.io.Serializable {
 
-
+     
      private Integer matCod;
      private String matIden;
      private String matDesc;
@@ -27,6 +27,7 @@ public class Materia  implements java.io.Serializable {
         this.semCod = semCod;
         this.curCod = curCod;
     }
+
     public Materia(String matIden, String matDesc, Integer matCred, int uniCod, int semCod, int curCod) {
        this.matIden = matIden;
        this.matDesc = matDesc;

@@ -19,4 +19,5 @@ public interface materiaDao {
     public void actualizarMateria(Materia materia);
     public void borrarMateria(Materia materia);
     public Materia obtenerMateriaPorCodigo(Session session,Integer codMateria)throws Exception;
+    public boolean guardarMateria(Session session,Materia materia)throws Exception;
 }

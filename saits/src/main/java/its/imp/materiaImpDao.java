@@ -50,6 +50,7 @@ public class materiaImpDao implements materiaDao{
         session.save(materia);
         //se concluye la transaccion de registro
         session.getTransaction().commit();
+        
         }
         catch(Exception e)
         {
@@ -128,6 +129,13 @@ public class materiaImpDao implements materiaDao{
         q.setParameter("nacCod", codMateria);
         return (Materia) q.uniqueResult();
         
+    }
+
+    @Override
+    public boolean guardarMateria(Session session, Materia materia) throws Exception {
+        //To change body of generated methods, choose Tools | Templates.
+        session.save(materia);
+        return true;
     }
     
 }
