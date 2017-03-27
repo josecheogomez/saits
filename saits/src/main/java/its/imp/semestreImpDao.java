@@ -123,9 +123,9 @@ public class semestreImpDao implements semestreDao{
     @Override
     public Semestre obtenerSemestrePorCodigo(Session session,Integer codSemestre) throws Exception {
          //To change body of generated methods, choose Tools | Templates.
-         String hql="FROM Semestre WHERE nacCod=:nacCod";
+         String hql="FROM Semestre WHERE semCod=:semCod";
         Query q=session.createQuery(hql);
-        q.setParameter("nacCod", codSemestre);
+        q.setParameter("semCod", codSemestre);
         return (Semestre) q.uniqueResult();
         
     }

@@ -74,9 +74,9 @@ public class cursoImpDao implements cursoDao {
 
     @Override
     public Curso obtenerCursoPorCodigo(Session session, Integer codCurso) throws Exception {
-        String hql="FROM Curso WHERE actCod=:actCod";
+        String hql="FROM Curso WHERE curCod=:curCod";
         Query q=session.createQuery(hql);
-        q.setParameter("actCod", codCurso);
+        q.setParameter("curCod", codCurso);
         return (Curso) q.uniqueResult();
         
     }
@@ -97,5 +97,5 @@ public class cursoImpDao implements cursoDao {
             }
         }
     }
-
+    
 }

@@ -123,9 +123,9 @@ public class unidadImpDao implements unidadDao{
     @Override
     public Unidad obtenerUnidadPorCodigo(Session session,Integer codUnidad) throws Exception {
          //To change body of generated methods, choose Tools | Templates.
-         String hql="FROM Unidad WHERE nacCod=:nacCod";
+         String hql="FROM Unidad WHERE uniCod=:uniCod";
         Query q=session.createQuery(hql);
-        q.setParameter("nacCod", codUnidad);
+        q.setParameter("uniCod", codUnidad);
         return (Unidad) q.uniqueResult();
         
     }

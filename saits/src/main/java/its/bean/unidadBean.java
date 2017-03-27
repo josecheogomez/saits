@@ -85,7 +85,7 @@ public class unidadBean {
       unidad= new Unidad();
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
-   //metodo para mostrar datos clientes por medio del dialogClientes
+   //metodo para mostrar datos Unidad por medio del dialogUnidad
     public void agregarDatosUnidad(Integer codUnidad) {
         this.session = null;
         this.transaction = null;
@@ -96,7 +96,40 @@ public class unidadBean {
             //obtener datos clientes objeto cliente segun codigo cliente
             this.unidad = cDao.obtenerUnidadPorCodigo(this.session, codUnidad);
             this.transaction.commit();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Cliente Agregado"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    //metodo para mostrar datos Unidad por medio del codigo
+    public void agregarDatosUnidad2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoUnidad == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            unidadDao cDao = new unidadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.unidad = cDao.obtenerUnidadPorCodigo(this.session, codigoUnidad);
+            if (this.unidad != null) {
+                this.codigoUnidad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+            } else {
+                this.codigoUnidad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Unidad No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
         } catch (Exception e) {
             if (this.transaction != null) {
                 System.out.println("Error" + e.getMessage());

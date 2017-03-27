@@ -10,6 +10,8 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
+   <!-- ESTA PROPIEDAD CREA acutomaticamente las tablas en la DB
+    <property name="hibernate.hbm2ddl.auto">create</property>-->
     <mapping resource="its/model/Motivo.hbm.xml"/>
     <mapping resource="its/model/PlanillaAsistencia.hbm.xml"/>
     <mapping resource="its/model/ClasTem.hbm.xml"/>

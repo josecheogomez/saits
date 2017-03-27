@@ -11,8 +11,11 @@ import javax.faces.bean.ViewScoped;
 import its.dao.cursoDao;
 import its.imp.cursoImpDao;
 import its.model.Curso;
+import its.util.HibernateUtil;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 @ManagedBean
 @ViewScoped
@@ -20,6 +23,12 @@ public class cursoBean {
     
     private List<Curso> listarCurso;
     private Curso curso;
+    //en esta variable capturamos el codigo para pasar al method buscar curso
+    private Integer codigoCurso;
+    
+    /*variables hibernate*/
+    private Session session;
+    private Transaction transaction;
     
     public cursoBean() {
         curso= new Curso();
@@ -41,6 +50,14 @@ public class cursoBean {
 
     public void setCurso(Curso curso) {
         this.curso = curso;
+    }
+
+    public Integer getCodigoCurso() {
+        return codigoCurso;
+    }
+
+    public void setCodigoCurso(Integer codigoCurso) {
+        this.codigoCurso = codigoCurso;
     }
     
     //metodos
@@ -69,6 +86,63 @@ public class cursoBean {
       dao.borrarCurso(curso);
       curso= new Curso();
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
+    }
+    
+    //metodo para mostrar datos Curso por medio del dialogCurso
+    public void agregarDatosCurso(Integer codCurso) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            cursoDao cDao = new cursoImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.curso = cDao.obtenerCursoPorCodigo(this.session, codCurso);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Curso Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    //metodo para mostrar datos Curso por medio del codigo
+    public void agregarDatosCurso2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoCurso == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            cursoDao cDao = new cursoImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.curso = cDao.obtenerCursoPorCodigo(this.session, codigoCurso);
+            if (this.curso != null) {
+                this.codigoCurso = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Curso Agregado"));
+            } else {
+                this.codigoCurso = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Curso No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
     }
    
 }
