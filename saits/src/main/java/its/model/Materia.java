@@ -16,16 +16,23 @@ public class Materia  implements java.io.Serializable {
      private int uniCod;
      private int semCod;
      private int curCod;
+     /*variables */
+     private Unidad unidad;
+     private Semestre semestre;
+     private Curso curso;
 
     public Materia() {
     }
 
 	
-    public Materia(String matIden, int uniCod, int semCod, int curCod) {
+    public Materia(String matIden, int uniCod, int semCod, int curCod,Unidad unidad,Semestre semestre,Curso curso) {
         this.matIden = matIden;
         this.uniCod = uniCod;
         this.semCod = semCod;
         this.curCod = curCod;
+        this.unidad=unidad;
+        this.semestre=semestre;
+        this.curso=curso;
     }
 
     public Materia(String matIden, String matDesc, Integer matCred, int uniCod, int semCod, int curCod) {
@@ -85,6 +92,30 @@ public class Materia  implements java.io.Serializable {
     
     public void setCurCod(int curCod) {
         this.curCod = curCod;
+    }
+
+    public Unidad getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(Unidad unidad) {
+        this.unidad = unidad;
+    }
+
+    public Semestre getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(Semestre semestre) {
+        this.semestre = semestre;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
 

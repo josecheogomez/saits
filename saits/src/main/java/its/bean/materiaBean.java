@@ -116,9 +116,53 @@ public class materiaBean {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
 
-    public void guardarMateria() {
-        this.session = null;
-        this.transaction = null;
-        
+    public void guardarMateria()
+    {
+        this.session=null;
+        this.transaction=null;
+        //this.vendedor.setCodVendedor(lBean.getUsuario().getVendedor().getCodVendedor());
+        try
+        {
+            this.session=HibernateUtil.getSessionFactory().openSession();
+            unidadDao pDao=new unidadImpDao();
+            semestreDao fDao=new semestreImpDao();
+            cursoDao dFDao=new cursoImpDao();
+            materiaDao mDao= new materiaImpDao();
+            
+            this.transaction=this.session.beginTransaction();
+            //this.factura.setCliente(this.cliente);
+            this.materia.setUnidad(this.unidad);
+            this.materia.setSemestre(this.semestre);
+            this.materia.setCurso(this.curso);
+            //this.factura.setVendedor(this.vendedor);
+            
+            //insert en la tabla factura
+            mDao.guardarMateria(session, materia);
+            
+            //recuperar el ultimo registro de la tabla factura
+           // this.factura =fDao.obtenerUltimoRegistro(session);
+            //recorremos arrayList guardar en la db
+           /* for(Detallefactura item: listaDetalleFactura)
+            {
+            this.producto=pDao.obtenerProductoPorCodBarra(session, item.getCodBarra());
+            item.setFactura(factura);
+            item.setProducto(producto);
+            //hacemos insert detalle factura
+            dFDao.guardarVentaDetalleFactura(session, item);
+            }*/
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto","Registrado"));
+            //this.limpiarFactura();
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
     }
 }
