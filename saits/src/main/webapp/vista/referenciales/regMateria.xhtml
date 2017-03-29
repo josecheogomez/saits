@@ -13,68 +13,68 @@
             <ui:define name="content">
                 <b:container>
                     <h:form id="frmRegistro">
+                        <h4>Registro de Materia</h4>
                         <b:jumbotron>
                             <b:container>
-                                <h4>Registro de Materia</h4>
                                 <b:growl id="growlMsg" show-detail="true" allowDismiss="true" delay="1000" escape="true"/>
                                 <p:panelGrid id="pnlRegistro">
-                                    <h:outputText value="Nombre" id="txtNombre" />
-                                    <b:inputText value="#{materiaBean.materia.matDesc}" required="true"/>
-                                    <h:outputText value="Identificador" id="txtIdentificador" />
-                                    <b:inputText value="#{materiaBean.materia.matIden}"/>
-                                    <h:outputText value="Credito" id="txtCredito" />
-                                    <b:inputText value="#{materiaBean.materia.matCred}"/>
-                                     <p:separator/>
+                                    
+                                    <b:inputText value="#{materiaBean.materia.matDesc}" required="true" required-message="Ingrese Nombre" placeholder="NOMBRE"/>
+                                    
+                                    <b:inputText value="#{materiaBean.materia.matIden}" required="true" required-message="Ingrese Identificador" placeholder="COD. IDENTIFICADOR"/>
+                                  
+                                    <b:inputText value="#{materiaBean.materia.matCred}" placeholder="CREDITOS"/>
+                                    <p:separator/>
                                     <h:panelGrid id="gridBuscarDatosUnidad" columns="5">
                                         <p:outputLabel value="Buscar Unidad: " style="font-weight: bold;"/>
-                                        <p:inputText id="txtBuscarUnidad" value="#{unidadBean.codigoUnidad}" size="12"
+                                        <p:inputText id="txtBuscarUnidad" value="#{materiaBean.codigoUnidad}" size="12"
                                                      converter="#{Integer}" converterMessage="El codigo debe ser numerico">
-                                            <p:ajax event="keyup" listener="#{unidadBean.agregarDatosUnidad2()}"
-                                                update="frmRegistro:gridDatosUnidad frmRegistro:growlMsg frmRegistro:txtBuscarUnidad"/>
+                                            <p:ajax event="keyup" listener="#{materiaBean.agregarDatosUnidad2()}"
+                                                    update="frmRegistro:gridDatosUnidad frmRegistro:growlMsg frmRegistro:txtBuscarUnidad"/>
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogUnidad').show();" update="dlgUnidad"/>
                                     </h:panelGrid>
-                                   
+
                                     <h:panelGrid id="gridDatosUnidad" columns="2">
-                                        <p:outputLabel value="Codigo" style="font-weight: bold"/>
-                                        <b:label text="#{unidadBean.unidad.uniCod}"/>
-                                        <p:outputLabel value="Nombre" style="font-weight: bold"/>
-                                        <b:label text="#{unidadBean.unidad.uniDesc}"/>
+                                        <b:label text="Codigo:"/>
+                                        <b:label text="#{materiaBean.unidad.uniCod}"/>
+                                        <b:label text="Descripcion:"/>
+                                        <b:label text="#{materiaBean.unidad.uniDesc}"/>
                                     </h:panelGrid>
-                                     <p:separator/>
-                                     <h:panelGrid id="gridBuscarDatosSemestre" columns="5">
+                                    <p:separator/>
+                                    <h:panelGrid id="gridBuscarDatosSemestre" columns="5">
                                         <p:outputLabel value="Buscar Semestre " style="font-weight: bold;"/>
-                                        <p:inputText id="txtBuscarSemestre" value="#{semestreBean.codigoSemestre}" size="12"
+                                        <p:inputText id="txtBuscarSemestre" value="#{materiaBean.codigoSemestre}" size="12"
                                                      converter="#{Integer}" converterMessage="El codigo debe ser numerico">
-                                            <p:ajax event="keyup" listener="#{semestreBean.agregarDatosSemestre2()}"
-                                                update="frmRegistro:gridDatosSemestre frmRegistro:growlMsg frmRegistro:txtBuscarSemestre"/>
+                                            <p:ajax event="keyup" listener="#{materiaBean.agregarDatosSemestre2()}"
+                                                    update="frmRegistro:gridDatosSemestre frmRegistro:growlMsg frmRegistro:txtBuscarSemestre"/>
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();" update="dlgSemestre"/>
                                     </h:panelGrid>
-                                    
+
                                     <h:panelGrid id="gridDatosSemestre" columns="2">
-                                        <p:outputLabel value="Codigo" style="font-weight: bold"/>
-                                        <b:label text="#{semestreBean.semestre.semCod}"/>
-                                        <p:outputLabel value="Nombre" style="font-weight: bold"/>
-                                        <b:label text="#{semestreBean.semestre.semNombre}"/>
+                                        <b:label text="Codigo:"/>
+                                        <b:label text="#{materiaBean.semestre.semCod}" />
+                                        <b:label text="Descripcion:" />
+                                        <b:label text="#{materiaBean.semestre.semNombre}"/>
                                     </h:panelGrid>
-                                     
-                                     <p:separator/>
-                                     <h:panelGrid id="gridBuscarDatosCurso" columns="5">
+
+                                    <p:separator/>
+                                    <h:panelGrid id="gridBuscarDatosCurso" columns="5">
                                         <p:outputLabel value="Buscar Curso " style="font-weight: bold;"/>
-                                        <p:inputText id="txtBuscarCurso" value="#{cursoBean.codigoCurso}" size="12"
+                                        <p:inputText id="txtBuscarCurso" value="#{materiaBean.codigoCurso}" size="12"
                                                      converter="#{Integer}" converterMessage="El codigo debe ser numerico">
-                                            <p:ajax event="keyup" listener="#{cursoBean.agregarDatosCurso2()}"
-                                                update="frmRegistro:gridDatosCurso frmRegistro:growlMsg frmRegistro:txtBuscarCurso"/>
+                                            <p:ajax event="keyup" listener="#{materiaBean.agregarDatosCurso2()}"
+                                                    update="frmRegistro:gridDatosCurso frmRegistro:growlMsg frmRegistro:txtBuscarCurso"/>
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogCurso').show();" update="dlgCurso"/>
                                     </h:panelGrid>
-                                    
+
                                     <h:panelGrid id="gridDatosCurso" columns="2">
-                                        <p:outputLabel value="Codigo" style="font-weight: bold"/>
-                                        <b:label text="#{cursoBean.curso.curCod}"/>
-                                        <p:outputLabel value="Nombre" style="font-weight: bold"/>
-                                        <b:label text="#{cursoBean.curso.descripcion}"/>
+                                        <b:label text="Codigo:"/>
+                                        <b:label text="#{materiaBean.curso.curCod}"/>
+                                        <b:label text="Descripcion:"/>
+                                        <b:label text="#{materiaBean.curso.descripcion}"/>
                                     </h:panelGrid>
                                 </p:panelGrid>
 
@@ -90,7 +90,7 @@
                                             <h:outputText value="#{ct.uniDesc}"/>
                                         </p:column>
                                         <p:column headerText="">
-                                            <p:commandButton value="Seleccionar" actionListener="#{unidadBean.agregarDatosUnidad(ct.uniCod)}" oncomplete="PF('dialogUnidad').hide();"
+                                            <p:commandButton value="Seleccionar" actionListener="#{materiaBean.agregarDatosUnidad(ct.uniCod)}" oncomplete="PF('dialogUnidad').hide();"
                                                              update="frmRegistro:gridDatosUnidad frmRegistro:growlMsg"/>
                                         </p:column>
                                     </p:dataTable>
@@ -108,7 +108,7 @@
                                             <h:outputText value="#{ct.semNombre}"/>
                                         </p:column>
                                         <p:column headerText="">
-                                            <p:commandButton value="Seleccionar" actionListener="#{semestreBean.agregarDatosSemestre(ct.semCod)}" oncomplete="PF('dialogSemestre').hide();"
+                                            <p:commandButton value="Seleccionar" actionListener="#{materiaBean.agregarDatosSemestre(ct.semCod)}" oncomplete="PF('dialogSemestre').hide();"
                                                              update="frmRegistro:gridDatosSemestre frmRegistro:growlMsg"/>
                                         </p:column>
                                     </p:dataTable>
@@ -126,15 +126,16 @@
                                             <h:outputText value="#{ct.descripcion}"/>
                                         </p:column>
                                         <p:column headerText="">
-                                            <p:commandButton value="Seleccionar" actionListener="#{cursoBean.agregarDatosCurso(ct.curCod)}" oncomplete="PF('dialogCurso').hide();"
+                                            <p:commandButton value="Seleccionar" actionListener="#{materiaBean.agregarDatosCurso(ct.curCod)}" oncomplete="PF('dialogCurso').hide();"
                                                              update="frmRegistro:gridDatosCurso frmRegistro:growlMsg"/>
                                         </p:column>
                                     </p:dataTable>
                                     <p:commandButton value="Cerrar" onclick="PF(dialogCurso).hide();"/>
                                 </p:dialog>
-                                 <!--Botones para grabar -->
-                                 <b:commandButton value="Guardar" actionListener="#{materiaBean.guardarMateria()}" />
-                                <b:button value="Atras" outcome="/vista/referenciales/materia.xhtml"/>
+                                <!--Botones para grabar -->
+                                <p:separator/>
+                                <b:commandButton value="Guardar" actionListener="#{materiaBean.guardarMateriaUSC()}" />
+                                <b:button value="Atras" onclick="#{materiaBean.limpiarMateria()}" outcome="/vista/referenciales/materia.xhtml"/>
                             </b:container>
                         </b:jumbotron>
                     </h:form>       

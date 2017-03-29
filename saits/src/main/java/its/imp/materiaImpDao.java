@@ -124,9 +124,9 @@ public class materiaImpDao implements materiaDao{
     @Override
     public Materia obtenerMateriaPorCodigo(Session session,Integer codMateria) throws Exception {
          //To change body of generated methods, choose Tools | Templates.
-         String hql="FROM Materia WHERE nacCod=:nacCod";
+         String hql="FROM Materia WHERE matCod=:matCod";
         Query q=session.createQuery(hql);
-        q.setParameter("nacCod", codMateria);
+        q.setParameter("matCod", codMateria);
         return (Materia) q.uniqueResult();
         
     }

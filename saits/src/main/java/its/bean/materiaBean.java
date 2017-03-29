@@ -39,9 +39,13 @@ public class materiaBean {
     private Unidad unidad;
     private Semestre semestre;
     private Curso curso;
+    /*variables de codigo*/
+    private Integer codigoUnidad;
+    private Integer codigoSemestre;
+    private Integer codigoCurso;
 
     public materiaBean() {
-        materia = new Materia();
+        this.materia = new Materia();
         this.unidad = new Unidad();
         this.semestre=new Semestre();
         this.curso=new Curso();
@@ -89,6 +93,30 @@ public class materiaBean {
         this.curso = curso;
     }
 
+    public Integer getCodigoUnidad() {
+        return codigoUnidad;
+    }
+
+    public void setCodigoUnidad(Integer codigoUnidad) {
+        this.codigoUnidad = codigoUnidad;
+    }
+
+    public Integer getCodigoSemestre() {
+        return codigoSemestre;
+    }
+
+    public void setCodigoSemestre(Integer codigoSemestre) {
+        this.codigoSemestre = codigoSemestre;
+    }
+
+    public Integer getCodigoCurso() {
+        return codigoCurso;
+    }
+
+    public void setCodigoCurso(Integer codigoCurso) {
+        this.codigoCurso = codigoCurso;
+    }
+
 
     //metodos
     public void prepararNuevoMateria() {
@@ -115,44 +143,207 @@ public class materiaBean {
         materia = new Materia();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
+    /*agregar datos unidad,semestre, curso*/
+    //metodo para mostrar datos Unidad por medio del dialogUnidad
+    public void agregarDatosUnidad(Integer codUnidad) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            unidadDao cDao = new unidadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.unidad = cDao.obtenerUnidadPorCodigo(this.session, codUnidad);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    //metodo para mostrar datos Unidad por medio del codigo
+    public void agregarDatosUnidad2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoUnidad == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            unidadDao cDao = new unidadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.unidad = cDao.obtenerUnidadPorCodigo(this.session, codigoUnidad);
+            if (this.unidad != null) {
+                this.codigoUnidad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+            } else {
+                this.codigoUnidad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Unidad No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    
+    //datos semestre
+    //metodo para mostrar datos Semestre por medio del dialogSemestre
+    public void agregarDatosSemestre(Integer codSemestre) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            semestreDao cDao = new semestreImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.semestre = cDao.obtenerSemestrePorCodigo(this.session, codSemestre);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Semestre Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    //metodo para mostrar datos Semestre por medio del codigo
+    public void agregarDatosSemestre2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoSemestre == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            semestreDao cDao = new semestreImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.semestre = cDao.obtenerSemestrePorCodigo(this.session, codigoSemestre);
+            if (this.semestre != null) {
+                this.codigoSemestre = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Semestre Agregado"));
+            } else {
+                this.codigoSemestre = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Semestre No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    
+     //metodo para mostrar datos Curso por medio del dialogCurso
+    public void agregarDatosCurso(Integer codCurso) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            cursoDao cDao = new cursoImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.curso = cDao.obtenerCursoPorCodigo(this.session, codCurso);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Curso Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    //metodo para mostrar datos Curso por medio del codigo
+    public void agregarDatosCurso2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoCurso == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            cursoDao cDao = new cursoImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.curso = cDao.obtenerCursoPorCodigo(this.session, codigoCurso);
+            if (this.curso != null) {
+                this.codigoCurso = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Curso Agregado"));
+            } else {
+                this.codigoCurso = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Curso No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
 
-    public void guardarMateria()
+    public void guardarMateriaUSC()
     {
         this.session=null;
         this.transaction=null;
         //this.vendedor.setCodVendedor(lBean.getUsuario().getVendedor().getCodVendedor());
+      
         try
         {
             this.session=HibernateUtil.getSessionFactory().openSession();
-            unidadDao pDao=new unidadImpDao();
-            semestreDao fDao=new semestreImpDao();
-            cursoDao dFDao=new cursoImpDao();
+       
             materiaDao mDao= new materiaImpDao();
             
             this.transaction=this.session.beginTransaction();
             //this.factura.setCliente(this.cliente);
-            this.materia.setUnidad(this.unidad);
-            this.materia.setSemestre(this.semestre);
-            this.materia.setCurso(this.curso);
-            //this.factura.setVendedor(this.vendedor);
+            //funciona si se agrega manualmente el codigo
+            /*
+            AL FIN GRABO ESTA PORQUERIA
+            */
+            this.materia.setUniCod(getUnidad().getUniCod());
+            this.materia.setSemCod(getSemestre().getSemCod());
+            this.materia.setCurCod(getCurso().getCurCod());
             
-            //insert en la tabla factura
             mDao.guardarMateria(session, materia);
             
-            //recuperar el ultimo registro de la tabla factura
-           // this.factura =fDao.obtenerUltimoRegistro(session);
-            //recorremos arrayList guardar en la db
-           /* for(Detallefactura item: listaDetalleFactura)
-            {
-            this.producto=pDao.obtenerProductoPorCodBarra(session, item.getCodBarra());
-            item.setFactura(factura);
-            item.setProducto(producto);
-            //hacemos insert detalle factura
-            dFDao.guardarVentaDetalleFactura(session, item);
-            }*/
+        
             this.transaction.commit();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto","Registrado"));
-            //this.limpiarFactura();
+            this.limpiarMateria();
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -164,5 +355,12 @@ public class materiaBean {
                 this.session.close();
             }
         }
+    }
+
+    public void limpiarMateria() {
+       this.materia = new Materia();
+       this.unidad =new Unidad();
+       this.semestre= new Semestre();
+       this.curso=new Curso();
     }
 }
