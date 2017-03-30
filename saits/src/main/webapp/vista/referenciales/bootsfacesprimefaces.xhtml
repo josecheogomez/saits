@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../../plantilla/temPrincipal.xhtml">
+
+            <ui:define name="content">
+                <b:form id="frm">
+                    <b:container>
+                        <b:jumbotron>
+                            <b:panelGrid colSpans="2,10">
+                                <p:outputLabel value="Nombre"/>
+                                <p:inputText id="txtNombrebp" />
+                                <p:outputLabel value="Apellido"/>
+                                <p:inputText id="txtApellidobp" />
+                                <p:outputLabel value="Fecha Nacimiento"/>
+                                <p:calendar id="calendarPer" showOn="button"/>
+                            </b:panelGrid>
+
+                            <b:row styleClass="show-grid">
+                                <b:column col-xs="6" col-sm="4" col-md="4">
+                                    <b:label text="Nombre" style="font-size: 14px"/>
+                                    <b:inputText />
+                                    <b:label text="Apellido" style="font-size: 14px"/>
+                                    <b:inputText />
+                                    <b:label text="Sexo" style="font-size: 14px"/>
+                                    <b:selectOneMenu>
+                                        <f:selectItem itemLabel="Masculino" value="M"/>
+                                        <f:selectItem itemLabel="Femenino" value="F"/>
+                                    </b:selectOneMenu>
+                                    <b:label text="Tp.Documento" style="font-size: 14px"/>
+                                    <b:selectOneMenu>
+                                        <f:selectItem itemLabel="Cedula de Identidad" value="CI"/>
+                                        <f:selectItem itemLabel="Docum. Nacional de Identidad" value="DNI"/>
+                                        <f:selectItem itemLabel="Pasaporte" value="PAS"/>
+                                    </b:selectOneMenu>
+                                    <b:label text="Credito" style="font-size: 14px"/>
+                                    <b:touchSpin min="1" max="10"/>
+                                </b:column>
+                                <b:column col-xs="6" col-sm="4" col-md="4">
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Unidad" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarUnidad" value="#{materiaBean.codigoUnidad}" size="12">
+                                            <p:ajax event="keyup" listener="#{materiaBean.agregarDatosUnidad2()}"
+                                                    update="frm:gridDatosUnidad frm:txtBuscarUnidad"/>
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogUnidad').show();" />
+                                    </h:panelGrid>
+                                    <b:panelGrid id="gridDatosUnidad" columns="1">
+                                        <b:label text="Descripcion:"/>
+                                        <b:label text="#{materiaBean.unidad.uniDesc}" style="background-color: #000000"/>
+                                    </b:panelGrid>
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Semestre" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarSemestre" value="#{materiaBean.codigoSemestre}" size="12" >
+                                            <p:ajax event="keyup" listener="#{materiaBean.agregarDatosSemestre2()}"
+                                                    update="frm:gridDatosSemestre frm:txtBuscarSemestre"/>
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                    </h:panelGrid>
+                                    <b:panelGrid id="gridDatosSemestre" columns="1">
+                                        <b:label text="Descripcion:"/>
+                                        <b:label text="#{materiaBean.semestre.semNombre}" style="background-color: #000000"/>
+                                    </b:panelGrid>
+                                    
+                                    <h:panelGrid id="gridBuscarDatosCurso" columns="5">
+                                        <b:label text="Curso:" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarCurso" value="#{materiaBean.codigoCurso}" size="12"
+                                                     converter="#{Integer}" converterMessage="El codigo debe ser numerico">
+                                            <p:ajax event="keyup" listener="#{materiaBean.agregarDatosCurso2()}"
+                                                    update="frm:gridDatosCurso frm:txtBuscarCurso"/>
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogCurso').show();" update="dlgCurso"/>
+                                    </h:panelGrid>
+
+                                    <b:panelGrid id="gridDatosCurso" columns="1">
+                                        <b:label text="Descripcion:"/>
+                                        <b:label text="#{materiaBean.curso.descripcion}" style="background-color: #000000"/>
+                                    </b:panelGrid>
+                                </b:column>
+                                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                                <div class="clearfix visible-xs"></div>
+                                <b:column col-xs="6" col-sm="4" col-md="4">
+                                    <b:label text="Nombre" style="font-size: 14px"/>
+                                    <b:inputText />
+                                    <b:label text="Apellido" style="font-size: 14px"/>
+                                    <b:inputText />
+                                    <b:label text="Sexo" style="font-size: 14px"/>
+                                    <b:selectOneMenu>
+                                        <f:selectItem itemLabel="Masculino" value="M"/>
+                                        <f:selectItem itemLabel="Femenino" value="F"/>
+                                    </b:selectOneMenu>
+                                    <b:label text="Tp.Documento" style="font-size: 14px"/>
+                                    <b:selectOneMenu>
+                                        <f:selectItem itemLabel="Cedula de Identidad" value="CI"/>
+                                        <f:selectItem itemLabel="Docum. Nacional de Identidad" value="DNI"/>
+                                        <f:selectItem itemLabel="Pasaporte" value="PAS"/>
+                                    </b:selectOneMenu>
+                                </b:column>
+                            </b:row>
+                        </b:jumbotron>
+                        <!--dialgo para mostrar datos del sistema -->
+                        <p:dialog id="dlgUnidad" widgetVar="dialogUnidad" modal="true" resizable="false"
+                                  showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                            <p:dataTable id="tablaUnidad" paginator="true" paginatorPosition="top"
+                                         var="ct"   value="#{unidadBean.listarUnidad}" emptyMessage="No hay datos" style="width: 700px">
+                                <p:column headerText="codigo">
+                                    <h:outputText value="#{ct.uniCod}"/>
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{ct.uniDesc}"/>
+                                </p:column>
+                                <p:column headerText="">
+                                    <p:commandButton value="Seleccionar" actionListener="#{materiaBean.agregarDatosUnidad(ct.uniCod)}" oncomplete="PF('dialogUnidad').hide();"
+                                                     update="frm:gridDatosUnidad"/>
+                                </p:column>
+                            </p:dataTable>
+                            <p:commandButton value="Cerrar" onclick="PF(dialogUnidad).hide();"/>
+                        </p:dialog>
+                        <!--dialgo para mostrar datos del sistema -->
+                        <p:dialog id="dlgSemestre" widgetVar="dialogSemestre" modal="true" resizable="false"
+                                  showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                            <p:dataTable id="tablaSemestre" paginator="true" paginatorPosition="top"
+                                         var="ct"   value="#{semestreBean.listarSemestre}" emptyMessage="No hay datos" style="width: 700px">
+                                <p:column headerText="codigo">
+                                    <h:outputText value="#{ct.semCod}"/>
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{ct.semNombre}"/>
+                                </p:column>
+                                <p:column headerText="">
+                                    <p:commandButton value="Seleccionar" actionListener="#{materiaBean.agregarDatosSemestre(ct.semCod)}" oncomplete="PF('dialogSemestre').hide();"
+                                                     update="frm:gridDatosSemestre"/>
+                                </p:column>
+                            </p:dataTable>
+                            <p:commandButton value="Cerrar" onclick="PF(dialogSemestre).hide();"/>
+                        </p:dialog>
+                        <p:dialog id="dlgCurso" widgetVar="dialogCurso" modal="true" resizable="false"
+                                  showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                            <p:dataTable id="tablaCurso" paginator="true" paginatorPosition="top"
+                                         var="ct"   value="#{cursoBean.listarCurso}" emptyMessage="No hay datos" style="width: 700px">
+                                <p:column headerText="codigo">
+                                    <h:outputText value="#{ct.curCod}"/>
+                                </p:column>
+                                <p:column headerText="Nombre">
+                                    <h:outputText value="#{ct.descripcion}"/>
+                                </p:column>
+                                <p:column headerText="">
+                                    <p:commandButton value="Seleccionar" actionListener="#{materiaBean.agregarDatosCurso(ct.curCod)}" oncomplete="PF('dialogCurso').hide();"
+                                                     update="frm:gridDatosCurso"/>
+                                </p:column>
+                            </p:dataTable>
+                            <p:commandButton value="Cerrar" onclick="PF(dialogCurso).hide();"/>
+                        </p:dialog>
+                    </b:container>
+                    <b:container id="cntBotones">
+                    <b:button value="Guardar"/>
+                    <b:button value="Cancelar"/>
+                    </b:container>
+
+                </b:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
