@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../plantilla/temPrincipal.xhtml">
+            <ui:define name="top">
+                
+            </ui:define>
+
+            <ui:define name="content">
+                <p:dialog header="Dialogo Basico" widgetVar="dlg1" minHeight="40">
+                    <p:outputLabel value="Prime face dialog"/>
+                    <p:inputText id="txtNo"/>
+                    <p:calendar id="cal" />
+                    <p:button value="Registrar" />
+                                 
+                </p:dialog>
+            </ui:define>
+        <ui:define name="bottom">
+                
+        </ui:define>
+        </ui:composition>
+        
+    </body>
+    
+</html>

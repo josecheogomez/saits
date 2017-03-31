@@ -163,8 +163,12 @@
                     <b:container id="cntBotones">
                     <b:button value="Guardar"/>
                     <b:button value="Cancelar"/>
+                    <b:button value="Abrir Dialog" onclick="PF('dlg1').show();" />
                     </b:container>
-
+                    <ui:insert name="dialog">
+                        <ui:include src="dialog.xhtml"></ui:include>
+                    </ui:insert>
+                    
                 </b:form>
 
 
