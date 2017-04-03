@@ -11,12 +11,13 @@ import javax.faces.bean.ViewScoped;
 import its.dao.carreraDao;
 import its.imp.carreraImpDao;
 import its.model.Carrera;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 @ManagedBean
 @ViewScoped
-public class carreraBean {
+public class carreraBean implements Serializable{
     
     private List<Carrera> listarCarrera;
     private Carrera carrera;
