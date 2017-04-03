@@ -18,7 +18,7 @@
                     <h:form id="menuSistema">     
                     <b:navBar>
                         <b:navbarLinks>
-                          <b:navLink value="Inicio" href="http://localhost:8080/saits/"></b:navLink>
+                            <b:navLink value="Inicio" href="http://localhost:8080/saits/" icon-awesome="home"></b:navLink>
                           <b:dropMenu value="Mantenimiento" icon-awesome="cog">
                             <b:dropMenu value="Academico">
                                 <b:navLink value="Carrera" outcome="/vista/referenciales/carrera.xhtml"/>
@@ -46,8 +46,15 @@
                                 <b:navLink value="Nacionalidad" outcome="/vista/referenciales/nacionalidad.xhtml"/>
                             </b:dropMenu>
                         </b:dropMenu>
-                          <b:dropMenu id="dmMvAcademico" value="Gestion Academica">
+                          <b:dropMenu id="dmMvAcademico" value="Gestion Academica" icon-awesome="book">
                               <b:navLink value="Malla Curricular"/>
+                          </b:dropMenu>
+                          <b:dropMenu id="dmMvAdministrativo" value="Gestion Administrativa" icon-awesome="money">
+                              <b:navLink value="Apertura - Cierre Caja"/>
+                              <b:navLink value="Facturacion"/>
+                          </b:dropMenu>
+                          <b:dropMenu id="dmMvBiblioteca" value="Gestion Biblioteca" icon-awesome="star">
+                              <b:navLink value="Prestamo"/>
                           </b:dropMenu>
                         </b:navbarLinks>
                     </b:navBar>
