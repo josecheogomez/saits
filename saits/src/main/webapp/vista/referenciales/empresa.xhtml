@@ -21,7 +21,8 @@
                         <h:form id="frmPrincipal">
                             <b:dataTable value="#{empresaBean.listarEmpresa}"
                                          var="td"
-                                         id="tablaDatos" responsive="true">
+                                         id="tablaDatos" responsive="true"
+                                         lang="es">
                                 <b:dataTableColumn label="Codigo" value="#{td.empCod}"/>
                                 <b:dataTableColumn label="Nombre" value="#{td.empNom}"/>
                                 <b:dataTableColumn label="Dirección" value="#{td.callePrincipal} N° #{td.nro} #{td.calleSecundaria}"/>

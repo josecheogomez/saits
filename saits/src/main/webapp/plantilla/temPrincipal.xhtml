@@ -19,7 +19,7 @@
                     <b:navBar>
                         <b:navbarLinks>
                           <b:navLink value="Inicio" href="http://localhost:8080/saits/"></b:navLink>
-                        <b:dropMenu value="Mantenimiento">
+                          <b:dropMenu value="Mantenimiento" icon-awesome="cog">
                             <b:dropMenu value="Academico">
                                 <b:navLink value="Carrera" outcome="/vista/referenciales/carrera.xhtml"/>
                                 <b:navLink value="Curso" outcome="/vista/referenciales/curso.xhtml"/>
@@ -45,7 +45,10 @@
                                 <b:navLink value="Empresa" outcome="/vista/referenciales/empresa.xhtml"/>
                                 <b:navLink value="Nacionalidad" outcome="/vista/referenciales/nacionalidad.xhtml"/>
                             </b:dropMenu>
-                        </b:dropMenu>  
+                        </b:dropMenu>
+                          <b:dropMenu id="dmMvAcademico" value="Gestion Academica">
+                              <b:navLink value="Malla Curricular"/>
+                          </b:dropMenu>
                         </b:navbarLinks>
                     </b:navBar>
                 </h:form>
