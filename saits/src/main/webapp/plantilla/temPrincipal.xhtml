@@ -16,7 +16,7 @@
         <div id="top">
             <ui:insert name="top">
                     <h:form id="menuSistema">     
-                    <b:navBar>
+                        <b:navBar position="top" sticky="false">
                         <b:navbarLinks>
                             <b:navLink value="Inicio" href="http://localhost:8080/saits/" icon-awesome="home"></b:navLink>
                           <b:dropMenu value="Mantenimiento" icon-awesome="cog">
@@ -48,13 +48,25 @@
                         </b:dropMenu>
                           <b:dropMenu id="dmMvAcademico" value="Gestion Academica" icon-awesome="book">
                               <b:navLink value="Malla Curricular"/>
+                              <b:navLink value="Plan de Clases"/>
+                              <b:navLink value="Inscripcion"/>
+                              <b:navLink value="Solicitud de Beca"/>
+                              <b:navLink value="Plan de Materia"/>
+                              <b:navLink value="Planilla de Asistencia"/>
+                              <b:navLink value="Planilla de Calificaciones"/>
                           </b:dropMenu>
                           <b:dropMenu id="dmMvAdministrativo" value="Gestion Administrativa" icon-awesome="money">
                               <b:navLink value="Apertura - Cierre Caja"/>
                               <b:navLink value="Facturacion"/>
+                              <b:navLink value="Cobro"/>
+                              <b:navLink value="Arqueo de Caja"/>
+                              <b:navLink value="Cuentas a Depositar"/>
                           </b:dropMenu>
                           <b:dropMenu id="dmMvBiblioteca" value="Gestion Biblioteca" icon-awesome="star">
+                              <b:navLink value="Adquisición"/>
                               <b:navLink value="Prestamo"/>
+                              <b:navLink value="Devolución"/>
+                              <b:navLink value="Ajustes"/>
                           </b:dropMenu>
                         </b:navbarLinks>
                     </b:navBar>
@@ -70,8 +82,13 @@
         
         </div>
 
-        <div id="bottom">
-            <ui:insert name="bottom">&copy;2015 Saits System </ui:insert>
+        <div id="bottom" style="text-align: center;">
+            <b:navBar position="bottom">
+                <ui:insert name="bottom">
+                    &copy;2017 Saits System 
+                </ui:insert>
+            </b:navBar>
+            
         </div>
 
     </h:body>

@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <body>
@@ -9,7 +10,41 @@
 
 
             <ui:define name="content">
-                content
+                <b:container>
+                    <b:jumbotron>
+                        <h2>Bienvenido a Saits</h2>
+                        <p>Con Saits podra gestionar los siguientes Modulos:</p>
+                        <b:panel title="Gestion Academica" look="primary">
+                            <p>
+                                * Malla Curricular <br/>
+                                * Plan de Clases<br/>
+                                * Inscripción<br/>
+                                * Beca<br/>
+                                * Plan de Materia<br/>
+                                * Planilla de Asistencia<br/>
+                                * Planilla de Calificaciones<br/>
+                                
+                             </p>
+                        </b:panel>
+                        <b:panel title="Gestion Administrativa" look="info">
+                            <p>
+                                * Apertura - Cierre de Caja <br/>
+                                * Facturacion<br/>
+                                * Cobro<br/>
+                                * Arqueo de Caja<br/>
+                                * Cuentas a Depositar<br/>
+                             </p>
+                        </b:panel>
+                        <b:panel title="Gestion Serv.Biblioteca" look="success">
+                            <p>
+                                * Adquisición <br/>
+                                * Prestamo<br/>
+                                * Devolución<br/>
+                                * Ajustes<br/>
+                            </p>
+                        </b:panel>
+                    </b:jumbotron>
+                </b:container>
             </ui:define>
 
         </ui:composition>
