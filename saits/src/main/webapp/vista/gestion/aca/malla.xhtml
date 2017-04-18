@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../../../plantilla/temPrincipal.xhtml">
+
+            <ui:define name="content">
+                
+                    <b:container>
+                    <h4>Malla Curricular</h4>
+                    <b:jumbotron>
+                        <b:form id="frmMalla">
+                            <b:row>
+                                <b:column span="4">
+                                    <b:label text="Carrera" style="font-size: 14px"/>
+                                    <b:inputText/>
+                                </b:column>
+                                <b:column span="4">
+                                    <b:label text="Fecha Inicio:" style="font-size: 14px"/>
+                                    <p:calendar showOn="button"/>
+                                    <b:label text="Fecha Cierre:" style="font-size: 14px"/>
+                                    <p:calendar showOn="button"/>
+                                </b:column>
+                                <b:column span="4">
+                                    <!--este espacio queda libre --> 
+                                </b:column>
+                            </b:row>
+                            <b:row>
+                                <b:column>
+                                    <b:dataTable lang="es" responsive="true">
+                                        <b:dataTableColumn label="Codigo" />
+                                        <b:dataTableColumn label="Materia" />
+                                        <b:dataTableColumn label="Iden.Mat" />
+                                        <b:dataTableColumn label="Curso" />
+                                        <b:dataTableColumn label="Semestre" />
+                                    </b:dataTable>
+                                </b:column>
+                            </b:row>
+                        </b:form>
+                    </b:jumbotron>
+                </b:container>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
