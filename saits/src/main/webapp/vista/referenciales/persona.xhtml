@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../../plantilla/temPrincipal.xhtml">
+
+            <ui:define name="content">
+                <b:container>
+                <h4>Registro de Persona</h4>
+                <b:growl id="growlMsg" show-detail="true" allowDismiss="true" delay="1000" escape="true"/>
+                <b:button value="Nuevo" look="primary" onclick="PF('dialogRegistro').show();"/>
+                <b:jumbotron>
+                    <b:container>
+                        <h:form id="frmPrincipal">
+                            <b:dataTable value="#{personaBean.listarPersona}"
+                                         var="td"
+                                         id="tablaDatos"
+                                         lang="es"
+                                         responsive="true">
+                                <b:dataTableColumn label="Codigo" value="#{td.perCod}"/>
+                                <b:dataTableColumn label="Nombre" value="#{td.perNom}"/>
+                                <b:dataTableColumn label="Apellido" value="#{td.perApe}"/>
+                                <b:dataTableColumn label="Tp.Doc" value="#{td.perTpDoc}"/>
+                                <b:dataTableColumn label="N° Doc" value="#{td.perNroDoc}"/>
+                                <b:dataTableColumn label="Fec.Nac" value="#{td.perFechaNac}"/>
+                                <b:dataTableColumn label="Telefono" value="#{td.perTel}"/>
+                                <b:dataTableColumn label="Celular" value="#{td.perCel}"/>
+                                <b:dataTableColumn label="Email" value="#{td.perMail}"/>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton value="Editar" look="warning" oncomplete="PF('dialogEditar').show();"
+                                                     update=":frmEditar">
+                                        <f:setPropertyActionListener target="#{personaBean.persona}" value="#{td}"/>                     
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                                <b:dataTableColumn label="">
+                                    <b:commandButton value="Borrar" look="danger" oncomplete="PF('dialogEliminar').show();"
+                                                     update=":frmEliminar">
+                                        <f:setPropertyActionListener target="#{personaBean.persona}" value="#{td}"/>
+                                    </b:commandButton>
+                                </b:dataTableColumn>
+                            </b:dataTable>
+                        </h:form>
+                    </b:container>
+                </b:jumbotron>    
+                </b:container>
+                <h:form id="frmRegistro">
+                    <p:dialog id="dlgRegistro" widgetVar="dialogRegistro" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Registro">
+                        <p:panelGrid id="pnlRegistro">
+                            <h:outputText value="Nombre" id="txtNombre" />
+                            <b:inputText value="#{personaBean.persona.perNom}" required="true"/>
+                        </p:panelGrid>
+                        <b:commandButton value="Guardar" actionListener="#{personaBean.nuevoPersona()}" update=":frmPrincipal frmRegistro :growlMsg"
+                                          oncomplete="PF('dialogRegistro').hide();"/>
+                        <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
+                    </p:dialog>
+                </h:form>    
+                <h:form id="frmEditar">
+                    <p:dialog id="dlgEditar" widgetVar="dialogEditar" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Editar">
+                        <h:panelGrid id="pnlEditar" columns="2" style="margin: 0 auto">
+                            <h:outputText value="Nombre" id="txtNombre" />
+                            <b:inputText value="#{personaBean.persona.perNom}" />
+                        </h:panelGrid>
+                        <p:commandButton value="Guardar" actionListener="#{personaBean.modificarPersona()}"
+                                         update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEditar').hide();"/>
+                        <p:commandButton value="Cancelar" oncomplete="PF('dialogEditar').hide();"/>
+                    </p:dialog>    
+                </h:form>
+                <h:form id="frmEliminar">
+                    <p:dialog id="dlgEliminar" widgetVar="dialogEliminar" responsive="true"
+                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Eliminar">
+                        <h:panelGrid id="pnlEliminar" columns="2" style="margin: 0 auto">
+                            <h:outputText value="Esta seguro de Eliminar el Registro?"/><br></br>
+                            <p:commandButton value="SI" actionListener="#{personaBean.eliminarPersona()}"
+                                             update="frmPrincipal:tablaDatos :growlMsg" oncomplete="PF('dialogEliminar').hide();"/>
+                            <p:commandButton value="NO" oncomplete="PF('dialogEliminar').hide();"/>    
+                        </h:panelGrid>
+                    </p:dialog>    
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
