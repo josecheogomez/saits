@@ -52,11 +52,43 @@
                 </b:container>
                 <h:form id="frmRegistro">
                     <p:dialog id="dlgRegistro" widgetVar="dialogRegistro" responsive="true"
-                              resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Registro">
-                        <p:panelGrid id="pnlRegistro">
-                            <h:outputText value="Nombre" id="txtNombre" />
-                            <b:inputText value="#{personaBean.persona.perNom}" required="true"/>
-                        </p:panelGrid>
+                              resizable="true" modal="true" showEffect="explode" hideEffect="explode" header="Registro">
+                        <h:panelGrid id="pnlRegistro">
+                            <b:tabView pills="true">
+                                <b:tab title="Datos Basicos">
+                                    <h:outputText value="Nombre" id="txtNombre" />
+                                    <b:inputText value="#{personaBean.persona.perNom}" required="true"/>
+                                    <h:outputText value="Apellido" id="txtApellido" />
+                                    <b:inputText value="#{personaBean.persona.perApe}" required="true"/>
+                                    <b:selectOneMenu value="#{personaBean.persona.perTpDoc}">
+                                        <f:selectItem itemLabel="(Ninguno)" itemValue="NN"/>
+                                        <f:selectItem itemLabel="CEDULA DE IDENTIDAD" itemValue="CI"/>
+                                        <f:selectItem itemLabel="DOCUMENTO NACIONAL DE IDENTIDAD" itemValue="DNI"/>
+                                        <f:selectItem itemLabel="PASAPORTE" itemValue="PAS"/>
+                                    </b:selectOneMenu>
+                                    <h:outputText value="N° Documento" id="txtNroDoc" />
+                                    <b:inputText value="#{personaBean.persona.perNroDoc}" required="true"/>
+                                    <b:dateTimePicker value="#{personaBean.persona.perFecNac}"
+                                                      show-time="false"/>
+                                </b:tab>
+                                <b:tab title="Dirección">
+                                    <h:outputText value="Calle" id="txtCalle" />
+                                    <b:inputText value="#{personaBean.persona.perCalle}" required="false"/>
+                                    <h:outputText value="N° Casa" id="txtNroCasa" />
+                                    <b:inputText value="#{personaBean.persona.perNroCasa}" required="false"/>
+                                    <h:outputText value="Trasversal" id="txttrasversal" />
+                                    <b:inputText value="#{personaBean.persona.perCallSec}" required="false"/>
+                                </b:tab>
+                                <b:tab title="Medio de Comunicación">
+                                    <h:outputText value="Telefono" id="txtTel" />
+                                    <b:inputText value="#{personaBean.persona.perTel}" required="false"/>
+                                    <h:outputText value="Celular" id="txtCelular" />
+                                    <b:inputText value="#{personaBean.persona.perCel}" required="false"/>
+                                    <h:outputText value="Email" id="txtmail" />
+                                    <b:inputText value="#{personaBean.persona.perEmail}" required="false"/>
+                                </b:tab>
+                            </b:tabView>
+                        </h:panelGrid>
                         <b:commandButton value="Guardar" actionListener="#{personaBean.nuevoPersona()}" update=":frmPrincipal frmRegistro :growlMsg"
                                           oncomplete="PF('dialogRegistro').hide();"/>
                         <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
