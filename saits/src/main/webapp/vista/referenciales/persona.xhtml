@@ -71,6 +71,35 @@
                                     <b:dateTimePicker value="#{personaBean.persona.perFecNac}"
                                                       show-time="false"/>
                                 </b:tab>
+                                <b:tab title="Geograficos">
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Ciudad" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarCiudad" value="#{ciudadBean}" size="12" >
+                                            <p:ajax event="keyup" listener="#{ciudadBean}"
+                                                    />
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Barrio" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarBarrio" value="#{barrioBean}" size="12" >
+                                            <p:ajax event="keyup" listener="#{barrioBean}"
+                                                    />
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Nacionalidad" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarNacionalidad" value="#{nacionalidadBean}" size="12" >
+                                            <p:ajax event="keyup" listener="#{nacionalidadBean}"
+                                                    />
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                    </h:panelGrid>
+                                    
+                                </b:tab>
                                 <b:tab title="Dirección">
                                     <h:outputText value="Calle" id="txtCalle" />
                                     <b:inputText value="#{personaBean.persona.perCalle}" required="false"/>
