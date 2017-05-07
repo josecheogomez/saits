@@ -116,6 +116,25 @@
                                     <h:outputText value="Email" id="txtmail" />
                                     <b:inputText value="#{personaBean.persona.perEmail}" required="false"/>
                                 </b:tab>
+                                <b:tab title="Laborales">
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Profesión" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarProfesion" value="" size="12" >
+                                            <p:ajax event="keyup" 
+                                                    />
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                    </h:panelGrid>
+                                    
+                                    <h:panelGrid columns="3">
+                                        <b:label text="Actividad" style="font-size: 12px"/>
+                                        <p:inputText id="txtBuscarActividad" value="#{actividadBean}" size="12" >
+                                            <p:ajax event="keyup" listener="#{actividadBean}"
+                                                    />
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                    </h:panelGrid>
+                                </b:tab>
                             </b:tabView>
                         </h:panelGrid>
                         <b:commandButton value="Guardar" actionListener="#{personaBean.nuevoPersona()}" update=":frmPrincipal frmRegistro :growlMsg"
