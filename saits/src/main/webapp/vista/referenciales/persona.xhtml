@@ -71,15 +71,19 @@
                                     <b:dateTimePicker value="#{personaBean.persona.perFecNac}"
                                                       show-time="false"/>
                                 </b:tab>
-                                <b:tab title="Geograficos">
+                                <b:tab id="tabGeo" title="Geograficos">
                                     <h:panelGrid columns="3">
                                         <b:label text="Ciudad" style="font-size: 12px"/>
-                                        <p:inputText id="txtBuscarCiudad" value="#{ciudadBean}" size="12" >
-                                            <p:ajax event="keyup" listener="#{ciudadBean}"
-                                                    />
+                                        <p:inputText id="txtBuscarCiudad" value="#{personaBean.codigoCiudad}" size="12" >
+                                            <p:ajax event="keyup" listener="#{personaBean.agregarDatosCiudad2()}"
+                                                    update=":frmRegistro:gridDatosCiudad frmRegistro:txtBuscarCiudad"/>
                                         </p:inputText>
-                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                        <p:commandButton value="..." oncomplete="PF('dialogCiudad').show();"/>
                                     </h:panelGrid>
+                                    <b:panelGrid id="gridDatosCiudad" columns="1">
+                                        <b:label text="Descripcion:"/>
+                                        <b:label text="#{personaBean.ciudad.ciuDesc}" style="background-color: #000000"/>
+                                    </b:panelGrid>
                                     
                                     <h:panelGrid columns="3">
                                         <b:label text="Barrio" style="font-size: 12px"/>
@@ -141,6 +145,24 @@
                                           oncomplete="PF('dialogRegistro').hide();"/>
                         <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
                     </p:dialog>
+                    <!--dialg buscador -->
+                    <p:dialog id="dlgCiudad" widgetVar="dialogCiudad" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaCiudad" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{ciudadBean.listarCiudad}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.ciuCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.ciuDesc}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosCiudad(ct.ciuCod)}" oncomplete="PF('dialogCiudad').hide();"
+                                                 update="frmRegistro:gridDatosCiudad"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogCiudad).hide();"/>
+                    </p:dialog>
                 </h:form>    
                 <h:form id="frmEditar">
                     <p:dialog id="dlgEditar" widgetVar="dialogEditar" responsive="true"
@@ -165,7 +187,7 @@
                         </h:panelGrid>
                     </p:dialog>    
                 </h:form>
-
+                
 
             </ui:define>
 
