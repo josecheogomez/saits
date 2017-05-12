@@ -76,7 +76,7 @@
                                         <b:label text="Ciudad" style="font-size: 12px"/>
                                         <p:inputText id="txtBuscarCiudad" value="#{personaBean.codigoCiudad}" size="12" >
                                             <p:ajax event="keyup" listener="#{personaBean.agregarDatosCiudad2()}"
-                                                    update=":frmRegistro:gridDatosCiudad frmRegistro:txtBuscarCiudad"/>
+                                                    update="gridDatosCiudad txtBuscarCiudad"/>
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogCiudad').show();"/>
                                     </h:panelGrid>
@@ -87,13 +87,16 @@
                                     
                                     <h:panelGrid columns="3">
                                         <b:label text="Barrio" style="font-size: 12px"/>
-                                        <p:inputText id="txtBuscarBarrio" value="#{barrioBean}" size="12" >
-                                            <p:ajax event="keyup" listener="#{barrioBean}"
-                                                    />
+                                        <p:inputText id="txtBuscarBarrio" value="#{personaBean.codigoBarrio}" size="12" >
+                                            <p:ajax event="keyup" listener="#{personaBean.agregarDatosBarrio2()}"
+                                                    update="gridDatosBarrio txtBuscarBarrio"/>
                                         </p:inputText>
-                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                        <p:commandButton value="..." oncomplete="PF('dialogBarrio').show();"/>
                                     </h:panelGrid>
-                                    
+                                    <b:panelGrid id="gridDatosBarrio" columns="1">
+                                        <b:label text="Descripción"/>
+                                        <b:label text="#{personaBean.barrio.descripcion}" style="background-color: #000000"/>
+                                    </b:panelGrid>
                                     <h:panelGrid columns="3">
                                         <b:label text="Nacionalidad" style="font-size: 12px"/>
                                         <p:inputText id="txtBuscarNacionalidad" value="#{nacionalidadBean}" size="12" >
@@ -102,7 +105,10 @@
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
                                     </h:panelGrid>
-                                    
+                                    <b:panelGrid id="gridDatosNacionalidad" columns="1">
+                                        <b:label text="Descripción"/>
+                                        <b:label text="#{personaBean.nacionalidad.nacDesc}" style="font-size: 12px"/>
+                                    </b:panelGrid>
                                 </b:tab>
                                 <b:tab title="Dirección">
                                     <h:outputText value="Calle" id="txtCalle" />
@@ -129,7 +135,10 @@
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
                                     </h:panelGrid>
-                                    
+                                    <b:panelGrid id="gridDatosProfesion" columns="1">
+                                        <b:label text="Descripción"/>
+                                        <b:label text="#{personaBean.profesion.profDesc}" style="font-size: 12px"/>
+                                    </b:panelGrid>
                                     <h:panelGrid columns="3">
                                         <b:label text="Actividad" style="font-size: 12px"/>
                                         <p:inputText id="txtBuscarActividad" value="#{actividadBean}" size="12" >
@@ -138,6 +147,10 @@
                                         </p:inputText>
                                         <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
                                     </h:panelGrid>
+                                    <b:panelGrid id="gridDatosActividad" columns="1">
+                                        <b:label text="Descripción"/>
+                                        <b:label text="#{personaBean.actividad.actDesc}" style="font-size: 12px"/>
+                                    </b:panelGrid>
                                 </b:tab>
                             </b:tabView>
                         </h:panelGrid>
@@ -145,25 +158,8 @@
                                           oncomplete="PF('dialogRegistro').hide();"/>
                         <b:commandButton value="Cancelar" oncomplete="PF('dialogRegistro').hide();"/>
                     </p:dialog>
-                    <!--dialg buscador -->
-                    <p:dialog id="dlgCiudad" widgetVar="dialogCiudad" modal="true" resizable="false"
-                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
-                        <p:dataTable id="tablaCiudad" paginator="true" paginatorPosition="top"
-                                     var="ct"   value="#{ciudadBean.listarCiudad}" emptyMessage="No hay datos" style="width: 700px">
-                            <p:column headerText="codigo">
-                                <h:outputText value="#{ct.ciuCod}"/>
-                            </p:column>
-                            <p:column headerText="Nombre">
-                                <h:outputText value="#{ct.ciuDesc}"/>
-                            </p:column>
-                            <p:column headerText="">
-                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosCiudad(ct.ciuCod)}" oncomplete="PF('dialogCiudad').hide();"
-                                                 update="frmRegistro:gridDatosCiudad"/>
-                            </p:column>
-                        </p:dataTable>
-                        <p:commandButton value="Cerrar" onclick="PF(dialogCiudad).hide();"/>
-                    </p:dialog>
-                </h:form>    
+                    
+                </h:form>
                 <h:form id="frmEditar">
                     <p:dialog id="dlgEditar" widgetVar="dialogEditar" responsive="true"
                               resizable="false" modal="true" showEffect="explode" hideEffect="explode" header="Editar">
@@ -187,8 +183,42 @@
                         </h:panelGrid>
                     </p:dialog>    
                 </h:form>
-                
-
+                <!--dialg buscador -->
+                <p:dialog id="dlgCiudad" widgetVar="dialogCiudad" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaCiudad" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{ciudadBean.listarCiudad}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.ciuCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.ciuDesc}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosCiudad(ct.ciuCod)}" oncomplete="PF('dialogCiudad').hide();"
+                                                 update="frmRegistro:gridDatosCiudad"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogCiudad).hide();"/>
+                    </p:dialog>
+                    <!--dialg buscador -->
+                <p:dialog id="dlgBarrio" widgetVar="dialogBarrio" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaBarrio" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{barrioBean.listarBarrio}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.barCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.descripcion}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosBarrio(ct.barCod)}" oncomplete="PF('dialogBarrio').hide();"
+                                                 update="frmRegistro:gridDatosBarrio"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogBarrio).hide();"/>
+                    </p:dialog>
             </ui:define>
 
         </ui:composition>

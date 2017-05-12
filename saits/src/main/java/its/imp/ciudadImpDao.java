@@ -74,9 +74,9 @@ public class ciudadImpDao implements ciudadDao {
 
     @Override
     public Ciudad obtenerCiudadPorCodigo(Session session, Integer codCiudad) throws Exception {
-        String hql="FROM Ciudad WHERE actCod=:actCod";
+        String hql="FROM Ciudad WHERE ciuCod=:ciuCod";
         Query q=session.createQuery(hql);
-        q.setParameter("actCod", codCiudad);
+        q.setParameter("ciuCod", codCiudad);
         return (Ciudad) q.uniqueResult();
         
     }

@@ -74,9 +74,9 @@ public class carreraImpDao implements carreraDao {
 
     @Override
     public Carrera obtenerCarreraPorCodigo(Session session, Integer codCarrera) throws Exception {
-        String hql="FROM Carrera WHERE actCod=:actCod";
+        String hql="FROM Carrera WHERE carCod=:carCod";
         Query q=session.createQuery(hql);
-        q.setParameter("actCod", codCarrera);
+        q.setParameter("carCod", codCarrera);
         return (Carrera) q.uniqueResult();
         
     }
