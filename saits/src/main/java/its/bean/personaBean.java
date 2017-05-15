@@ -5,15 +5,21 @@
  */
 package its.bean;
 
+import its.dao.actividadDao;
 import its.dao.barrioDao;
 import its.dao.ciudadDao;
+import its.dao.nacionalidadDao;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import its.dao.personaDao;
+import its.dao.profesionDao;
+import its.imp.actividadImpDao;
 import its.imp.barrioImpDao;
 import its.imp.ciudadImpDao;
+import its.imp.nacionalidadImpDao;
 import its.imp.personaImpDao;
+import its.imp.profesionImpDao;
 import its.model.Actividad;
 import its.model.Barrio;
 import its.model.Ciudad;
@@ -297,5 +303,168 @@ public class personaBean {
             }
         }
     }
-   
+   //metodo para agregar datos al buscador Nacionalidad
+    public void agregarDatosNacionalidad(Integer codNacionalidad) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            nacionalidadDao cDao = new nacionalidadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.nacionalidad = cDao.obtenerNacionalidadPorCodigo(this.session, codNacionalidad);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+     public void agregarDatosNacionalidad2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoNacionalidad == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            nacionalidadDao cDao = new nacionalidadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto nacionalidad 
+            this.nacionalidad = cDao.obtenerNacionalidadPorCodigo(this.session, codigoNacionalidad);
+            if (this.nacionalidad != null) {
+                this.codigoNacionalidad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+            } else {
+                this.codigoNacionalidad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Unidad No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+     //metodo para agregar datos al buscador ciudad
+    public void agregarDatosProfesion(Integer codProfesion) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            profesionDao cDao = new profesionImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.profesion = cDao.obtenerProfesionPorCodigo(this.session, codProfesion);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+     public void agregarDatosProfesion2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoProfesion == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            profesionDao cDao = new profesionImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto nacionalidad 
+            this.profesion = cDao.obtenerProfesionPorCodigo(this.session, codigoProfesion);
+            if (this.profesion != null) {
+                this.codigoProfesion = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+            } else {
+                this.codigoProfesion = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Unidad No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+         public void agregarDatosActividad(Integer codActividad) {
+        this.session = null;
+        this.transaction = null;
+        try {
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            actividadDao cDao = new actividadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto cliente segun codigo cliente
+            this.actividad = cDao.obtenerActividadPorCodigo(this.session, codActividad);
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+     public void agregarDatosActividad2() {
+        this.session = null;
+        this.transaction = null;
+        try {
+            if (codigoProfesion == null) {
+                return;
+            }
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            actividadDao cDao = new actividadImpDao();
+            this.transaction = this.session.beginTransaction();
+            //obtener datos clientes objeto nacionalidad 
+            this.actividad = cDao.obtenerActividadPorCodigo(this.session, codigoActividad);
+            if (this.actividad != null) {
+                this.codigoActividad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Datos del Unidad Agregado"));
+            } else {
+                this.codigoActividad = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Datos del Unidad No encontrado"));
+            }
+            this.transaction.commit();
+            //FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Datos del Cliente Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e.getMessage());
+                transaction.rollback();
+            }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
 }

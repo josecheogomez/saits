@@ -99,15 +99,15 @@
                                     </b:panelGrid>
                                     <h:panelGrid columns="3">
                                         <b:label text="Nacionalidad" style="font-size: 12px"/>
-                                        <p:inputText id="txtBuscarNacionalidad" value="#{nacionalidadBean}" size="12" >
-                                            <p:ajax event="keyup" listener="#{nacionalidadBean}"
-                                                    />
+                                        <p:inputText id="txtBuscarNacionalidad" value="#{personaBean.codigoNacionalidad}" size="12" >
+                                            <p:ajax event="keyup" listener="#{personaBean.agregarDatosNacionalidad2()}"
+                                                    update="gridDatosNacionalidad txtBuscarNacionalidad"/>
                                         </p:inputText>
-                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                        <p:commandButton value="..." oncomplete="PF('dialogNacionalidad').show();"/>
                                     </h:panelGrid>
                                     <b:panelGrid id="gridDatosNacionalidad" columns="1">
                                         <b:label text="Descripción"/>
-                                        <b:label text="#{personaBean.nacionalidad.nacDesc}" style="font-size: 12px"/>
+                                        <b:label text="#{personaBean.nacionalidad.nacDesc}" style="background-color: #000000"/>
                                     </b:panelGrid>
                                 </b:tab>
                                 <b:tab title="Dirección">
@@ -129,27 +129,27 @@
                                 <b:tab title="Laborales">
                                     <h:panelGrid columns="3">
                                         <b:label text="Profesión" style="font-size: 12px"/>
-                                        <p:inputText id="txtBuscarProfesion" value="" size="12" >
-                                            <p:ajax event="keyup" 
-                                                    />
+                                        <p:inputText id="txtBuscarProfesion" value="#{personaBean.codigoProfesion}" size="12" >
+                                            <p:ajax event="keyup" listener="#{personaBean.agregarDatosProfesion2()}"
+                                                    update="gridDatosProfesion txtBuscarProfesion"/>
                                         </p:inputText>
-                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                        <p:commandButton value="..." oncomplete="PF('dialogProfesion').show();"/>
                                     </h:panelGrid>
                                     <b:panelGrid id="gridDatosProfesion" columns="1">
                                         <b:label text="Descripción"/>
-                                        <b:label text="#{personaBean.profesion.profDesc}" style="font-size: 12px"/>
+                                        <b:label text="#{personaBean.profesion.profDesc}" style="background-color: #000000"/>
                                     </b:panelGrid>
                                     <h:panelGrid columns="3">
                                         <b:label text="Actividad" style="font-size: 12px"/>
-                                        <p:inputText id="txtBuscarActividad" value="#{actividadBean}" size="12" >
-                                            <p:ajax event="keyup" listener="#{actividadBean}"
-                                                    />
+                                        <p:inputText id="txtBuscarActividad" value="#{personaBean.codigoActividad}" size="12" >
+                                            <p:ajax event="keyup" listener="#{personaBean.agregarDatosActividad2()}"
+                                                    update="gridDatosActividad txtBuscarActividad"/>
                                         </p:inputText>
-                                        <p:commandButton value="..." oncomplete="PF('dialogSemestre').show();"/>
+                                        <p:commandButton value="..." oncomplete="PF('dialogActividad').show();"/>
                                     </h:panelGrid>
                                     <b:panelGrid id="gridDatosActividad" columns="1">
                                         <b:label text="Descripción"/>
-                                        <b:label text="#{personaBean.actividad.actDesc}" style="font-size: 12px"/>
+                                        <b:label text="#{personaBean.actividad.actDesc}" style="background-color: #000000"/>
                                     </b:panelGrid>
                                 </b:tab>
                             </b:tabView>
@@ -218,6 +218,59 @@
                             </p:column>
                         </p:dataTable>
                         <p:commandButton value="Cerrar" onclick="PF(dialogBarrio).hide();"/>
+                    </p:dialog>
+                                        <!--dialg nacionalidad -->
+                <p:dialog id="dlgNacionalidad" widgetVar="dialogNacionalidad" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaNacionalidad" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{nacionalidadBean.listarNacionalidad}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.nacCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.nacDesc}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosNacionalidad(ct.nacCod)}" oncomplete="PF('dialogNacionalidad').hide();"
+                                                 update="frmRegistro:gridDatosNacionalidad"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogNacionalidad).hide();"/>
+                    </p:dialog>
+                                                            <!--dialg nacionalidad -->
+                <p:dialog id="dlgProfesion" widgetVar="dialogProfesion" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaProfesion" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{profesionBean.listarProfesion}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.profCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.profDesc}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosProfesion(ct.profCod)}" oncomplete="PF('dialogProfesion').hide();"
+                                                 update="frmRegistro:gridDatosProfesion"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogProfesion).hide();"/>
+                    </p:dialog>
+                    <p:dialog id="dlgActividad" widgetVar="dialogActividad" modal="true" resizable="false"
+                              showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                        <p:dataTable id="tablaActividad" paginator="true" paginatorPosition="top"
+                                     var="ct"   value="#{actividadBean.listarActividad}" emptyMessage="No hay datos" style="width: 700px">
+                            <p:column headerText="codigo">
+                                <h:outputText value="#{ct.actCod}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{ct.actDesc}"/>
+                            </p:column>
+                            <p:column headerText="">
+                                <p:commandButton value="Seleccionar" actionListener="#{personaBean.agregarDatosActividad(ct.actCod)}" oncomplete="PF('dialogActividad').hide();"
+                                                 update="frmRegistro:gridDatosActividad"/>
+                            </p:column>
+                        </p:dataTable>
+                        <p:commandButton value="Cerrar" onclick="PF(dialogActividad).hide();"/>
                     </p:dialog>
             </ui:define>
 
