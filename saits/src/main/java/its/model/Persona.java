@@ -26,7 +26,7 @@ public class Persona  implements java.io.Serializable {
      private int barCod;
      private int nacCod;
      private int actCod;
-     private Date perCarg;
+     //private Date perCarg;
      private String perClas;
      private int profCod;
 
@@ -57,7 +57,7 @@ public class Persona  implements java.io.Serializable {
        this.barCod = barCod;
        this.nacCod = nacCod;
        this.actCod = actCod;
-       this.perCarg = perCarg;
+//       this.perCarg = perCarg;
        this.perClas = perClas;
        this.profCod = profCod;
     }
@@ -174,13 +174,13 @@ public class Persona  implements java.io.Serializable {
     public void setActCod(int actCod) {
         this.actCod = actCod;
     }
-    public Date getPerCarg() {
+   /* public Date getPerCarg() {
         return this.perCarg;
     }
     
     public void setPerCarg(Date perCarg) {
         this.perCarg = perCarg;
-    }
+    }*/
     public String getPerClas() {
         return this.perClas;
     }

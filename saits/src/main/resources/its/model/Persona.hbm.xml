@@ -59,11 +59,6 @@
         <property name="actCod" type="int">
             <column name="act_cod" not-null="true" />
         </property>
-        <property name="perCarg" type="timestamp">
-            <column name="per_carg" length="19">
-                <comment>fecha y hora de registro</comment>
-            </column>
-        </property>
         <property name="perClas" type="string">
             <column name="per_clas" length="45" />
         </property>

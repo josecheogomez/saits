@@ -27,7 +27,6 @@ import its.model.Nacionalidad;
 import its.model.Persona;
 import its.model.Profesion;
 import its.util.HibernateUtil;
-import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import org.hibernate.Session;
@@ -169,11 +168,21 @@ public class personaBean {
     public void prepararNuevoPersona()
     {
         persona= new Persona();
+        ciudad= new Ciudad();
+        barrio=new Barrio();
+        nacionalidad=new Nacionalidad();
+        actividad=new Actividad();
+        profesion=new Profesion();
     }
     
     public void nuevoPersona()
     {
         personaDao dao= new personaImpDao();
+        this.persona.setCiuCod(getCiudad().getCiuCod());
+        this.persona.setBarCod(getBarrio().getBarCod());
+        this.persona.setNacCod(getNacionalidad().getNacCod());
+        this.persona.setActCod(getActividad().getActCod());
+        this.persona.setProfCod(getProfesion().getProfCod());
         dao.NuevoPersona(persona);
         persona= new Persona();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto!", "Registro Exitoso"));
