@@ -9,8 +9,9 @@ import java.util.Date;
  */
 public class Malla  implements java.io.Serializable {
 
-
-     private MallaId id;
+    // private MallaId id;
+     private int malCod;
+     private int carCod;
      private Date malCarg;
      private Date malInicio;
      private Date malFin;
@@ -22,13 +23,17 @@ public class Malla  implements java.io.Serializable {
     }
 
 	
-    public Malla(MallaId id, int usuCod, int sucCod) {
-        this.id = id;
+    public Malla(int malCod,int carCod, int usuCod, int sucCod) {
+        //this.id = id;
+        this.malCod = malCod;
+        this.carCod=carCod;
         this.usuCod = usuCod;
         this.sucCod = sucCod;
     }
-    public Malla(MallaId id, Date malCarg, Date malInicio, Date malFin, Character malEstado, int usuCod, int sucCod) {
-       this.id = id;
+    public Malla(int malCod,int carCod, Date malCarg, Date malInicio, Date malFin, Character malEstado, int usuCod, int sucCod) {
+       //this.id = id;
+       this.malCod = malCod;
+       this.carCod=carCod;
        this.malCarg = malCarg;
        this.malInicio = malInicio;
        this.malFin = malFin;
@@ -37,13 +42,13 @@ public class Malla  implements java.io.Serializable {
        this.sucCod = sucCod;
     }
    
-    public MallaId getId() {
+   /* public MallaId getId() {
         return this.id;
     }
     
     public void setId(MallaId id) {
         this.id = id;
-    }
+    }*/
     public Date getMalCarg() {
         return this.malCarg;
     }
@@ -72,6 +77,23 @@ public class Malla  implements java.io.Serializable {
     public void setMalEstado(Character malEstado) {
         this.malEstado = malEstado;
     }
+
+    public int getMalCod() {
+        return malCod;
+    }
+
+    public void setMalCod(int malCod) {
+        this.malCod = malCod;
+    }
+
+    public int getCarCod() {
+        return carCod;
+    }
+
+    public void setCarCod(int carCod) {
+        this.carCod = carCod;
+    }
+    
     public int getUsuCod() {
         return this.usuCod;
     }

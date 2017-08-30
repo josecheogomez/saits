@@ -4,14 +4,13 @@
 <!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="its.model.Malla" table="malla" catalog="SAITSDB" optimistic-lock="version">
-        <composite-id name="id" class="its.model.MallaId">
-            <key-property name="malCod" type="int">
-                <column name="mal_cod" />
-            </key-property>
-            <key-property name="carCod" type="int">
-                <column name="car_cod" />
-            </key-property>
-        </composite-id>
+        <id name="malCod" type="java.lang.Integer">
+            <column name="mal_cod" />
+            <generator class="identity" />
+        </id>
+        <property name="carCod" type="int">
+            <column name="car_cod" not-null="true" />
+        </property>
         <property name="malCarg" type="timestamp">
             <column name="mal_carg" length="19" />
         </property>

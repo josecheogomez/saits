@@ -71,5 +71,6 @@ public class carreraBean implements Serializable{
       carrera= new Carrera();
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Correcto", "Datos Borrados"));
     }
-   
+  // public void agregar
+    
 }
