@@ -11,50 +11,49 @@
         <ui:composition template="./../../../plantilla/temPrincipal.xhtml">
 
             <ui:define name="content">
-                
-                    <b:container>
-                    <h4>Malla Curricular</h4>
-                    
-                        <b:form id="frmMalla">
-                            <b:panel>
-                                <p:layout id="capaDatosMalla" style="width: 100%; height: 150px">
-                            <p:layoutUnit id="datosMalla" position="center" style="padding: 5px; text-align: justify; font-size: 14px;" size="300">
-                                <h:panelGrid id="gridBuscarDatosCarrera" columns="5">
-                                    <p:outputLabel value="Codigo" style="font-weight: bold;"/>
-                                    <p:inputText id="txtBuscarCarrera" value="#{mallaBean.codigoCarrera}" size="12"
-                                                 converter="#{Integer}" converterMessage="El codigo debe ser numerico">
-                                        <p:ajax event="keyup" listener="#{mallaBean.agregarDatosCarrera2()}"
-                                                update=":frmMalla:gridDatosCarrera :frmMalla:txtBuscarCarrera"/>
-                                    </p:inputText>
-                                    <p:commandButton value="..." oncomplete="PF('dialogCarrera').show();" update="dlgCarrera" />
-                                    <p:outputLabel value="Fecha:" style="font-weight: bold;"/>
-                                    <p:outputLabel value="" style="font-weight: bold"/>
-                                </h:panelGrid>
-                                <p:separator/>
-                                <h:panelGrid id="gridDatosCarrera" columns="2">
-                                    <p:outputLabel value="Codigo " style="font-weight: bold"/>
-                                    <p:outputLabel id="lblCodigo" value="#{mallaBean.carrera.carCod}"/>
-                                    <p:outputLabel value="Carrera " style="font-weight: bold"/>
-                                    <p:outputLabel id="lblCarrera" value="#{mallaBean.carrera.carDesc}"/>
-                                </h:panelGrid>
-                            </p:layoutUnit>
-                            <p:layoutUnit id="datosFactura" position="east" style="padding: 5px; text-align: center; font-size: 14px;" size="300">
-                                <h:panelGrid columns="1" style="font-size: 24px; font-weight: bold; margin-top: 30px; margin: 0 auto">
-                                    N°.
-                                    <p:outputLabel value="#{facturaBean.numeroFactura}"/>
-                                </h:panelGrid>
-                            </p:layoutUnit>
-                        </p:layout>
-                        <p:separator/>
-                        <h:panelGrid id="gridBuscarMateria" columns="6">
-                            <p:outputLabel value="Codigo de Materia"/>
-                            <p:inputText id="txtBuscarProductoCodigoBarra" size="12" value="#{facturaBean.codigoBarra}" disabled="#{!facturaBean.enable}">
-                                <p:ajax event="keyup" listener="#{facturaBean.mostrarCantidadProducto2()}"
-                                        update="frmMalla:gridBuscarMateria"/>
-                            </p:inputText>
-                            <p:commandButton value="..." oncomplete="PF('dialogProductos').show();" update="" disabled="#{!facturaBean.enable}"/>
-                                
-                        </h:panelGrid>
+
+                <b:container>
+
+                    <b:form id="frmMalla">
+                        <b:panel title="Malla Curricular" collapsible="false" look="primary">
+                            <p:layout id="capaDatosMalla" style="width: 100%; height: 150px">
+                                <p:layoutUnit id="datosMalla" position="center" style="padding: 5px; text-align: justify; font-size: 14px;" size="300">
+                                    <h:panelGrid id="gridBuscarDatosCarrera" columns="5">
+                                        <p:outputLabel value="Codigo" style="font-weight: bold;"/>
+                                        <p:inputText id="txtBuscarCarrera" value="#{mallaBean.codigoCarrera}" size="12"
+                                                     converter="#{Integer}" converterMessage="El codigo debe ser numerico" disabled="#{!enableDisable.activar()}">
+                                            <p:ajax event="keyup" listener="#{mallaBean.agregarDatosCarrera2()}"
+                                                    update=":frmMalla:gridDatosCarrera :frmMalla:txtBuscarCarrera" />
+                                        </p:inputText>
+                                        <p:commandButton value="..." oncomplete="PF('dialogCarrera').show();" update="dlgCarrera" disabled="#{!enableDisable.activar()}"/>
+                                        <p:outputLabel value="Fecha:" style="font-weight: bold;"/>
+                                        <p:outputLabel value="" style="font-weight: bold"/>
+                                    </h:panelGrid>
+                                    <p:separator/>
+                                    <h:panelGrid id="gridDatosCarrera" columns="2">
+                                        <p:outputLabel value="Codigo " style="font-weight: bold"/>
+                                        <p:outputLabel id="lblCodigo" value="#{mallaBean.carrera.carCod}"/>
+                                        <p:outputLabel value="Carrera " style="font-weight: bold"/>
+                                        <p:outputLabel id="lblCarrera" value="#{mallaBean.carrera.carDesc}"/>
+                                    </h:panelGrid>
+                                </p:layoutUnit>
+                                <p:layoutUnit id="datosFactura" position="east" style="padding: 5px; text-align: center; font-size: 14px;" size="300">
+                                    <h:panelGrid columns="1" style="font-size: 24px; font-weight: bold; margin-top: 30px; margin: 0 auto">
+                                        N°.
+                                        <p:outputLabel />
+                                    </h:panelGrid>
+                                </p:layoutUnit>
+                            </p:layout>
+                            <p:separator/>
+                            <h:panelGrid id="gridBuscarMateria" columns="6">
+                                <p:outputLabel value="Codigo de Materia"/>
+                                <p:inputText id="txtBuscarProductoCodigoBarra" size="12"  disabled="#{!enableDisable.activar()}">
+                                    <p:ajax event="keyup" listener="#{facturaBean.mostrarCantidadProducto2()}"
+                                            update="frmMalla:gridBuscarMateria"/>
+                                </p:inputText>
+                                <p:commandButton value="..." oncomplete="PF('dialogMateria').show();" update="" disabled="#{!enableDisable.activar()}"/>
+
+                            </h:panelGrid>
                             <b:row>
                                 <b:column>
                                     <b:dataTable lang="es" responsive="true" searching="false"  paginated="false">
@@ -84,12 +83,38 @@
                                 </p:dataTable>
                                 <p:commandButton value="Cerrar" onclick="PF(dialogCarrera).hide();"/>
                             </p:dialog>
-                            </b:panel>
-                            <b:button value="Guardar" look="primary"/>
-                            <b:button value="Cancelar"/>
-                        </b:form>
-                    
-                    </b:container>
+                            <!--dialgo para mostrar datos de la carrera -->
+                            <p:dialog id="dlgMateria" widgetVar="dialogMateria" modal="true" resizable="false"
+                                      showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                                <p:dataTable id="tablaMateria" paginator="true" rows="10" paginatorPosition="top"
+                                             var="ct"   value="#{materiaBean.listarMateria}" emptyMessage="No hay datos" style="width: 700px">
+                                    <p:column headerText="codigo" filterBy="#{ct.matCod}">
+                                        <h:outputText value="#{ct.matCod}"/>
+                                    </p:column>
+                                    <p:column headerText="Descripción" filterBy="#{ct.matDesc}">
+                                        <h:outputText value="#{ct.matDesc}"/>
+                                    </p:column>
+                                    <p:column headerText="">
+                                        <p:commandButton value="Seleccionar" actionListener="#{mallaBean.agregarDatosCarrera(ct.carCod)}" oncomplete="PF('dialogCarrera').hide();"
+                                                         update="frmMalla:gridDatosCarrera"/>
+                                    </p:column>
+                                </p:dataTable>
+                                <p:commandButton value="Cerrar" onclick="PF(dialogMateria).hide();"/>
+                            </p:dialog>
+                        </b:panel>
+                        <b:commandButton value="Nuevo" style="width: 150px; height: 60px" look="primary" action="#{enableDisable.activarBoton()}" disabled="#{enableDisable.activar()}" update="frmMalla"/>
+                        <b:commandButton value="Guardar" style="width: 150px; height: 60px" look="success" disabled="#{!enableDisable.activar()}" styleClass="ui-priority-primary"/>
+                        <b:commandButton value="Cancelar" style="width: 150px; height: 60px" disabled="#{!enableDisable.activar()}" action="#{enableDisable.desactivarBoton()}" update="frmMalla"/>
+
+                        <!--
+                        <p:commandButton value="Nuevo" style="width: 150px; height: 60px" action="{enableDisable.activarBoton()}" disabled="{enableDisable.activar()}" update="frmMalla" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Guardar" style="width: 150px; height: 60px" disabled="{!enableDisable.activar()}" styleClass="ui-priority-primary"/>
+                        <p:commandButton value="Cancelar" style="width: 150px; height: 60px" disabled="{!enableDisable.activar()}" action="{enableDisable.desactivarBoton()}" update="frmMalla" styleClass="ui-priority-primary"/>
+
+                        -->
+                    </b:form>
+
+                </b:container>
 
             </ui:define>
 

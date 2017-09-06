@@ -123,5 +123,19 @@ public class mallaImpDao implements mallaDao{
         q.setParameter("malCod", codMalla);
         return (Malla) q.uniqueResult();
     }
+
+    @Override
+    public Malla obtenerUltimoRegistro(Session session) throws Exception {
+    String hql="FROM Malla ORDER BY malCod DESC";
+    Query q= session.createQuery(hql).setMaxResults(1);
+    return (Malla) q.uniqueResult();
+    }
+
+    @Override
+    public long obtenerTotalRegistro(Session session) {
+    String hql="SELECT COUNT(*) FROM Malla";
+    Query q=session.createQuery(hql);
+    return (Long) q.uniqueResult();
+    }
     
 }

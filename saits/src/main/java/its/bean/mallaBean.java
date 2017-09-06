@@ -29,9 +29,13 @@ public class mallaBean {
     private Malla malla;
     private Integer codigoMalla;
     private Integer codigoCarrera;
+    private Integer codigoMateria;
     Session session;
     Transaction transaction;
     private Carrera carrera;
+    private long numeroMalla;
+    
+    private boolean enable;
     
     public mallaBean() {
         malla= new Malla();
@@ -80,7 +84,22 @@ public class mallaBean {
         this.codigoCarrera = codigoCarrera;
     }
 
-    
+    public long getNumeroMalla() {
+        return numeroMalla;
+    }
+
+    public void setNumeroMalla(long numeroMalla) {
+        this.numeroMalla = numeroMalla;
+    }
+
+    public Integer getCodigoMateria() {
+        return codigoMateria;
+    }
+
+    public void setCodigoMateria(Integer codigoMateria) {
+        this.codigoMateria = codigoMateria;
+    }
+
     //metodos
     public void prepararNuevoMalla()
     {

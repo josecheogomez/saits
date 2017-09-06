@@ -19,4 +19,6 @@ public interface mallaDao {
     public void actualizarMalla(Malla malla);
     public void borrarMalla(Malla malla);
     public Malla obtenerMallaPorCodigo(Session session, Integer codMalla) throws Exception;
+    public Malla obtenerUltimoRegistro(Session session)throws Exception;
+    public long obtenerTotalRegistro(Session session);
 }
