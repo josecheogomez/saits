@@ -72,7 +72,7 @@
                             </b:row>
                             <!--dialgo para mostrar datos de la carrera -->
                             <p:dialog id="dlgCarrera" widgetVar="dialogCarrera" modal="true" resizable="false"
-                                      showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                                       header="Buscar Datos">
                                 <p:dataTable id="tablaCarrera" paginator="true" paginatorPosition="top"
                                              var="ct"   value="#{carreraBean.listarCarrera}" emptyMessage="No hay datos" style="width: 700px">
                                     <p:column headerText="codigo">
@@ -90,7 +90,7 @@
                             </p:dialog>
                             <!--dialgo para mostrar datos de la carrera -->
                             <p:dialog id="dlgMateria" widgetVar="dialogMateria" modal="true" resizable="false"
-                                      showEffect="explode" hideEffect="explode" header="Buscar Datos">
+                                       header="Buscar Datos">
                                 <p:dataTable id="tablaMateria" paginator="true" rows="10" paginatorPosition="top"
                                              var="ct"   value="#{materiaBean.listarMateria}" emptyMessage="No hay datos" style="width: 700px">
                                     <p:column headerText="codigo" filterBy="#{ct.matCod}">
