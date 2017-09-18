@@ -56,9 +56,14 @@
                             </h:panelGrid>
                             <b:row>
                                 <b:column>
-                                    <b:dataTable lang="es" responsive="true" searching="false"  paginated="false">
-                                        <b:dataTableColumn label="Codigo" />
-                                        <b:dataTableColumn label="Materia" />
+                                    <b:dataTable id="dtMateria" lang="es" responsive="true" searching="false"  
+                                                 paginated="false" value="#{mallaBean.listaMallaDet}" var="item">
+                                        <b:dataTableColumn label="Codigo" >
+                                            <h:outputText value="#{item.matCod}"/>
+                                        </b:dataTableColumn>
+                                        <b:dataTableColumn label="Materia" >
+                                            <h:outputText value="#{item.matDesc}"/>
+                                        </b:dataTableColumn>
                                         <b:dataTableColumn label="Iden.Mat" />
                                         <b:dataTableColumn label="Curso" />
                                         <b:dataTableColumn label="Semestre" />
@@ -95,8 +100,8 @@
                                         <h:outputText value="#{ct.matDesc}"/>
                                     </p:column>
                                     <p:column headerText="">
-                                        <p:commandButton value="Seleccionar" actionListener="#{mallaBean.agregarDatosCarrera(ct.carCod)}" oncomplete="PF('dialogCarrera').hide();"
-                                                         update="frmMalla:gridDatosCarrera"/>
+                                        <p:commandButton value="Seleccionar" actionListener="#{mallaBean.agregarDatosMateria(ct.matCod)}" oncomplete="PF('dialogMateria').hide();"
+                                                         update="frmMalla:dtMateria"/>
                                     </p:column>
                                 </p:dataTable>
                                 <p:commandButton value="Cerrar" onclick="PF(dialogMateria).hide();"/>

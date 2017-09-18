@@ -9,30 +9,42 @@ package its.model;
 public class MallaDet  implements java.io.Serializable {
 
 
-     private int mallaCurricular;
+     private int malCod;
      private int matCod;
+     private String matDesc;
+     private String matIden;
+     private Malla malla;
+     private Materia materia;
      private Character malEstado;
 
     public MallaDet() {
     }
 
 	
-    public MallaDet(int mallaCurricular, int matCod) {
-        this.mallaCurricular = mallaCurricular;
+    public MallaDet(Malla malla,Materia materia,int malCod, int matCod,String matDesc) {
+        this.malla = malla;
+        this.matDesc = matDesc;
+        //this.matIden= matIden;
+        this.materia = materia;
+        this.malCod = malCod;
         this.matCod = matCod;
     }
-    public MallaDet(int mallaCurricular, int matCod, Character malEstado) {
-       this.mallaCurricular = mallaCurricular;
+    public MallaDet(Malla malla,Materia materia,int malCod, int matCod,String matDesc, Character malEstado) {
+       this.malla=malla;
+       this.matDesc = matDesc;
+       //this.matIden = matIden;
+       this.materia=materia;
+       this.malCod = malCod;
        this.matCod = matCod;
        this.malEstado = malEstado;
     }
    
-    public int getMallaCurricular() {
-        return this.mallaCurricular;
+    public int getMalCod() {
+        return this.malCod;
     }
     
-    public void setMallaCurricular(int mallaCurricular) {
-        this.mallaCurricular = mallaCurricular;
+    public void setMalCod(int malCod) {
+        this.malCod = malCod;
     }
     public int getMatCod() {
         return this.matCod;
@@ -49,6 +61,38 @@ public class MallaDet  implements java.io.Serializable {
         this.malEstado = malEstado;
     }
 
+    public Malla getMalla() {
+        return malla;
+    }
+
+    public void setMalla(Malla malla) {
+        this.malla = malla;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public String getMatDesc() {
+        return matDesc;
+    }
+
+    public void setMatDesc(String matDesc) {
+        this.matDesc = matDesc;
+    }
+
+    public String getMatIden() {
+        return matIden;
+    }
+
+    public void setMatIden(String matIden) {
+        this.matIden = matIden;
+    }
+    
 
 
 

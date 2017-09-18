@@ -4,8 +4,8 @@
 <!-- Generated 06/03/2017 11:36:45 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="its.model.MallaDet" table="malla_det" catalog="SAITSDB" optimistic-lock="version">
-        <id name="mallaCurricular" type="int">
-            <column name="malla_curricular" />
+        <id name="malCod" type="int">
+            <column name="mal_cod" />
             <generator class="assigned" />
         </id>
         <property name="matCod" type="int">

@@ -10,10 +10,14 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import its.dao.mallaDao;
+import its.dao.materiaDao;
 import its.imp.carreraImpDao;
 import its.imp.mallaImpDao;
+import its.imp.materiaImpDao;
 import its.model.Carrera;
 import its.model.Malla;
+import its.model.MallaDet;
+import its.model.Materia;
 import its.util.HibernateUtil;
 import java.util.ArrayList;
 import javax.faces.application.FacesMessage;
@@ -26,18 +30,22 @@ import org.hibernate.Transaction;
 public class mallaBean {
     
     private List<Malla> listarMalla;
-    private Malla malla;
+    private List<MallaDet>listaMallaDet;
+   // private List<String> ejemplolista =new ArrayList();
+    private Malla malla; 
+    private Materia materia;
     private Integer codigoMalla;
     private Integer codigoCarrera;
-    private Integer codigoMateria;
+    private Integer codigoMateria=1;
     Session session;
     Transaction transaction;
     private Carrera carrera;
     private long numeroMalla;
     
-    private boolean enable;
+   
     
     public mallaBean() {
+        listaMallaDet= new ArrayList<>();
         malla= new Malla();
         carrera=new Carrera();
     }
@@ -99,6 +107,23 @@ public class mallaBean {
     public void setCodigoMateria(Integer codigoMateria) {
         this.codigoMateria = codigoMateria;
     }
+
+    public List<MallaDet> getListaMallaDet() {
+        return listaMallaDet;
+    }
+
+    public void setListaMallaDet(List<MallaDet> listaMallaDet) {
+        this.listaMallaDet = listaMallaDet;
+    }
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
 
     //metodos
     public void prepararNuevoMalla()
@@ -176,6 +201,32 @@ public class mallaBean {
                 System.out.println("Error" + e.getMessage());
                 transaction.rollback();
             }
+        } finally {
+            if (this.session != null) {
+                this.session.close();
+            }
+        }
+    }
+    public void agregarDatosMateria(int codMateria) {
+        
+        this.session = null;
+        this.transaction = null;
+        try {
+            
+            this.session = HibernateUtil.getSessionFactory().openSession();
+            materiaDao mDao = new materiaImpDao();
+            this.transaction = this.session.beginTransaction();
+            this.materia = mDao.obtenerMateriaPorCodigo(this.session, codMateria);
+            //this.ejemplolista.add(materia.getMatCod(),materia.getMatDesc());
+            this.listaMallaDet.add(new MallaDet(null,null,this.malla.getMalCod(), this.materia.getMatCod(),this.materia.getMatDesc()));
+            this.transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Registro Agregado"));
+        } catch (Exception e) {
+            if (this.transaction != null) {
+                System.out.println("Error" + e);
+                transaction.rollback();
+            }
+
         } finally {
             if (this.session != null) {
                 this.session.close();
