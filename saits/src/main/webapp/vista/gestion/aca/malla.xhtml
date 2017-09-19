@@ -64,9 +64,6 @@
                                         <b:dataTableColumn label="Materia" >
                                             <h:outputText value="#{item.matDesc}"/>
                                         </b:dataTableColumn>
-                                        <b:dataTableColumn label="Iden.Mat" />
-                                        <b:dataTableColumn label="Curso" />
-                                        <b:dataTableColumn label="Semestre" />
                                     </b:dataTable>
                                 </b:column>
                             </b:row>
@@ -98,6 +95,12 @@
                                     </p:column>
                                     <p:column headerText="Descripción" filterBy="#{ct.matDesc}">
                                         <h:outputText value="#{ct.matDesc}"/>
+                                    </p:column>
+                                    <p:column headerText="Cod.Ident" filterBy="#{ct.matIden}">
+                                        <h:outputText value="#{ct.matIden}"/>
+                                    </p:column>
+                                    <p:column headerText="Credito" filterBy="#{ct.matCred}">
+                                        <h:outputText value="#{ct.matCred}"/>
                                     </p:column>
                                     <p:column headerText="">
                                         <p:commandButton value="Seleccionar" actionListener="#{mallaBean.agregarDatosMateria(ct.matCod)}" oncomplete="PF('dialogMateria').hide();"
