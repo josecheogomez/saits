@@ -111,7 +111,7 @@
                             </p:dialog>
                         </b:panel>
                         <b:commandButton value="Nuevo" style="width: 150px; height: 60px" look="primary" action="#{enableDisable.activarBoton()}" disabled="#{enableDisable.activar()}" update="frmMalla"/>
-                        <b:commandButton value="Guardar" style="width: 150px; height: 60px" look="success" disabled="#{!enableDisable.activar()}" styleClass="ui-priority-primary"/>
+                        <b:commandButton value="Guardar" actionListener="#{mallaBean.guardar()}" style="width: 150px; height: 60px" look="success" disabled="#{!enableDisable.activar()}" styleClass="ui-priority-primary"/>
                         <b:commandButton value="Cancelar" style="width: 150px; height: 60px" disabled="#{!enableDisable.activar()}" action="#{enableDisable.desactivarBoton()}" update="frmMalla"/>
 
                         <!--

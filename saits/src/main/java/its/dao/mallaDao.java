@@ -21,4 +21,5 @@ public interface mallaDao {
     public Malla obtenerMallaPorCodigo(Session session, Integer codMalla) throws Exception;
     public Malla obtenerUltimoRegistro(Session session)throws Exception;
     public long obtenerTotalRegistro(Session session);
+    public boolean guardarMalla(Session session, Malla malla)throws Exception;
 }

@@ -137,5 +137,11 @@ public class mallaImpDao implements mallaDao{
     Query q=session.createQuery(hql);
     return (Long) q.uniqueResult();
     }
+
+    @Override
+    public boolean guardarMalla(Session session, Malla malla) throws Exception {
+       session.save(malla);
+       return true;
+    }
     
 }

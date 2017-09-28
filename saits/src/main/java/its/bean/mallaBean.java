@@ -10,8 +10,10 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import its.dao.mallaDao;
+import its.dao.mallaDetDao;
 import its.dao.materiaDao;
 import its.imp.carreraImpDao;
+import its.imp.mallaDetImpDao;
 import its.imp.mallaImpDao;
 import its.imp.materiaImpDao;
 import its.model.Carrera;
@@ -232,5 +234,41 @@ public class mallaBean {
                 this.session.close();
             }
         }
+    }
+    //metodo para regitrar cab y detalle de la malla
+    public void guardar(){
+    this.session=null;
+    this.transaction=null;
+    this.malla.setSucCod(1);
+    this.malla.setUsuCod(1);
+    try
+    {
+        this.session=HibernateUtil.getSessionFactory().openSession();
+        //instanciamos las clases
+        materiaDao mDao=new materiaImpDao();
+        mallaDao maDao=new mallaImpDao();
+        mallaDetDao mdDao=new mallaDetImpDao();
+        
+        this.carrera.setCarCod(this.getCodigoCarrera());
+        //clase de persistencia
+        maDao.guardarMalla(session, malla);
+        //recorresmos el detalla
+        for(MallaDet item: listaMallaDet)
+        {
+            this.materia=mDao.obtenerMateriaPorCodigo(session, item.getMatCod());
+            item.setMalla(malla);
+            item.setMateria(materia);
+            //se realiza el insert
+            mdDao.guardarMallaDet(session, item);
+        }
+        this.transaction.commit();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Correcto","Malla Registrada"));
+        
+        
+    }
+    catch(Exception e)
+    {
+        System.out.println("Error"+e);
+    }
     }
 }
