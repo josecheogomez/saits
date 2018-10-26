@@ -53,7 +53,7 @@ public class personaImpDao implements personaDao{
         }
         catch(Exception e)
         {
-            //se hace un rollback en caso de que hayga error 
+            //se hace un rollback en caso de que haya error 
         session.getTransaction().rollback();
         System.out.println("Error"+e);
         }
@@ -80,7 +80,7 @@ public class personaImpDao implements personaDao{
         }
         catch(Exception e)
         {
-            //se hace un rollback en caso de que hayga error 
+            //se hace un rollback en caso de que haya error 
         session.getTransaction().rollback();
         System.out.println("Error"+e);
         }
@@ -107,7 +107,7 @@ public class personaImpDao implements personaDao{
         }
         catch(Exception e)
         {
-            //se hace un rollback en caso de que hayga error 
+            //se hace un rollback en caso de que haya error 
         session.getTransaction().rollback();
         System.out.println("Error"+e);
         }
